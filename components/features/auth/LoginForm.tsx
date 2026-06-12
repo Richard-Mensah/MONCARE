@@ -6,18 +6,34 @@ import Button from "@/components/ui/Button"
 import Input from "@/components/ui/Input"
 import { CheckCircle2 } from "lucide-react"
 
+type Mode = "password" | "magic"
+
 export default function LoginForm() {
+  const [mode, setMode] = useState<Mode>("password")
   const [email, setEmail] = useState("")
-  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
-    "idle"
-  )
+  const [password, setPassword] = useState("")
+  const [status, setStatus] = useState<"idle" | "busy" | "sent" | "error">("idle")
   const [error, setError] = useState("")
 
-  async function handleSubmit(e: React.FormEvent) {
+  async function handlePassword(e: React.FormEvent) {
     e.preventDefault()
-    setStatus("sending")
+    setStatus("busy")
     setError("")
+    const supabase = createClient()
+    const { error } = await supabase.auth.signInWithPassword({ email, password })
+    if (error) {
+      setError(error.message)
+      setStatus("error")
+    } else {
+      // Full reload so the server picks up the new session cookie.
+      window.location.assign("/")
+    }
+  }
 
+  async function handleMagic(e: React.FormEvent) {
+    e.preventDefault()
+    setStatus("busy")
+    setError("")
     const supabase = createClient()
     const { error } = await supabase.auth.signInWithOtp({
       email,
@@ -26,7 +42,6 @@ export default function LoginForm() {
         emailRedirectTo: `${window.location.origin}/auth/confirm`,
       },
     })
-
     if (error) {
       setError(error.message)
       setStatus("error")
@@ -41,15 +56,17 @@ export default function LoginForm() {
         <CheckCircle2 className="mx-auto mb-2 h-8 w-8 text-emerald-600" />
         <p className="font-medium text-emerald-900">Check your email</p>
         <p className="mt-1 text-sm text-emerald-700">
-          We sent a secure sign-in link to <strong>{email}</strong>. Open it on
-          this device to continue.
+          We sent a secure sign-in link to <strong>{email}</strong>.
         </p>
       </div>
     )
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+    <form
+      onSubmit={mode === "password" ? handlePassword : handleMagic}
+      className="flex flex-col gap-4"
+    >
       <Input
         id="email"
         type="email"
@@ -60,15 +77,39 @@ export default function LoginForm() {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
-      {status === "error" && (
-        <p className="text-sm text-red-600">{error}</p>
+
+      {mode === "password" && (
+        <Input
+          id="password"
+          type="password"
+          label="Password"
+          placeholder="Your password"
+          required
+          autoComplete="current-password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
       )}
-      <Button type="submit" loading={status === "sending"} className="w-full">
-        Send sign-in link
+
+      {status === "error" && <p className="text-sm text-red-600">{error}</p>}
+
+      <Button type="submit" loading={status === "busy"} className="w-full">
+        {mode === "password" ? "Sign in" : "Send sign-in link"}
       </Button>
-      <p className="text-center text-xs text-gray-400">
-        We&apos;ll email you a one-tap link. No password needed.
-      </p>
+
+      <button
+        type="button"
+        onClick={() => {
+          setMode((m) => (m === "password" ? "magic" : "password"))
+          setStatus("idle")
+          setError("")
+        }}
+        className="text-center text-xs text-brand-600 hover:underline"
+      >
+        {mode === "password"
+          ? "Prefer a one-tap email link instead?"
+          : "Sign in with a password instead"}
+      </button>
     </form>
   )
 }
