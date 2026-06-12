@@ -15,7 +15,7 @@ export default function BottomNav({ role }: Props) {
   const items = NAV[role]
 
   return (
-    <nav className="sticky bottom-0 z-20 border-t border-gray-200 bg-white/95 backdrop-blur md:hidden">
+    <nav className="sticky bottom-0 z-20 border-t border-line bg-white/95 backdrop-blur md:hidden">
       <ul className="mx-auto flex max-w-2xl items-stretch justify-around">
         {items.map(({ href, label, icon: Icon }) => {
           const active = pathname === href || pathname.startsWith(href + "/")
@@ -25,7 +25,7 @@ export default function BottomNav({ role }: Props) {
                 href={href}
                 className={cn(
                   "flex flex-col items-center gap-0.5 py-2.5 text-[11px] font-medium transition-colors",
-                  active ? "text-brand-600" : "text-gray-400 hover:text-gray-600"
+                  active ? "text-brand-600" : "text-slate-400 hover:text-slate-600"
                 )}
               >
                 <Icon className="h-5 w-5" strokeWidth={active ? 2.4 : 2} />

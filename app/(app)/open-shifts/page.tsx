@@ -16,8 +16,8 @@ export default async function OpenShiftsPage() {
   return (
     <div>
       <PageHeader
-        title="Open shifts"
-        subtitle="Shifts you can claim — no more WhatsApp scramble"
+        title="Available Shifts Marketplace"
+        subtitle="Claim open shifts from Medygg Care and other partners"
       />
       <ShiftsRealtime userId={userId} />
 

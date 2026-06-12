@@ -1,17 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap");
 @import "tailwindcss";
 
 @theme {
-  /* MONCARE brand — sky blue from the logo (#1B9FDD) */
-  --color-brand-50: #ecf8fd;
-  --color-brand-100: #d2eefb;
-  --color-brand-200: #a9dff6;
-  --color-brand-300: #74cbef;
-  --color-brand-400: #3cb4e6;
-  --color-brand-500: #1b9fdd;
-  --color-brand-600: #1184bd;
-  --color-brand-700: #126a98;
-  --color-brand-800: #15597d;
-  --color-brand-900: #164a68;
+  /* MONCARE brand — Clinical Precision primary (#1190CB) */
+  --color-brand-50: #eaf6fd;
+  --color-brand-100: #cfeafa;
+  --color-brand-200: #9fd5f4;
+  --color-brand-300: #63bdeb;
+  --color-brand-400: #2ea6df;
+  --color-brand-500: #1190cb;
+  --color-brand-600: #0a78ad;
+  --color-brand-700: #00628d;
+  --color-brand-800: #064f70;
+  --color-brand-900: #0a425d;
+
+  /* Semantic status colors */
+  --color-success: #1cbf99;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+
+  /* Neutrals from the design system */
+  --color-ink: #222222;
+  --color-muted: #64748b;
+  --color-line: #e2e8f0;
+  --color-surface: #f8fafc;
 }
 
 @theme inline {
@@ -20,13 +32,21 @@
 }
 
 :root {
-  --background: #f7fafc;
-  --foreground: #0f172a;
+  --background: #f8fafc;
+  --foreground: #222222;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family:
-    system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Tighten headings per the design system */
+h1,
+h2,
+h3 {
+  letter-spacing: -0.02em;
 }

@@ -38,11 +38,19 @@ export const SHIFT_STATUS_LABELS: Record<ShiftStatus, string> = {
   cancelled: "Cancelled",
 }
 
-// Tailwind badge classes per shift status.
+// Left-border accent per notification type (alert-feed styling).
+export const NOTIF_ACCENT: Record<string, string> = {
+  shift_cancelled: "border-l-red-500",
+  shift_assigned: "border-l-emerald-500",
+  open_shift: "border-l-brand-500",
+  shift_claim: "border-l-amber-500",
+}
+
+// Tailwind badge classes per shift status (Clinical Precision status tints).
 export const SHIFT_STATUS_STYLES: Record<ShiftStatus, string> = {
-  open: "bg-amber-100 text-amber-800",
-  assigned: "bg-brand-100 text-brand-800",
-  confirmed: "bg-emerald-100 text-emerald-800",
-  completed: "bg-gray-100 text-gray-700",
-  cancelled: "bg-red-100 text-red-800",
+  open: "bg-amber-50 text-amber-700 ring-1 ring-amber-200/60",
+  assigned: "bg-brand-50 text-brand-700 ring-1 ring-brand-200/60",
+  confirmed: "bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200/60",
+  completed: "bg-slate-100 text-slate-600 ring-1 ring-slate-200",
+  cancelled: "bg-red-50 text-red-600 ring-1 ring-red-200/60",
 }

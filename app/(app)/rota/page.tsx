@@ -3,6 +3,7 @@ import { getCareHomeShifts } from "@/lib/data/shifts"
 import PageHeader from "@/components/layout/PageHeader"
 import ShiftCard from "@/components/features/shifts/ShiftCard"
 import CancelShiftButton from "@/components/features/shifts/CancelShiftButton"
+import SyncBridge from "@/components/features/rota/SyncBridge"
 import EmptyState from "@/components/ui/EmptyState"
 import { CalendarDays } from "lucide-react"
 
@@ -24,6 +25,7 @@ export default async function RotaPage() {
   }
 
   const shifts = await getCareHomeShifts(profile.care_home_id)
+  const homeName = shifts[0]?.care_home?.name ?? "Your care home"
 
   return (
     <div>
@@ -31,6 +33,8 @@ export default async function RotaPage() {
         title="Rota"
         subtitle="MONCARE staff booked at your home. Cancel here to alert them instantly."
       />
+
+      <SyncBridge homeName={homeName} />
 
       {shifts.length === 0 ? (
         <EmptyState

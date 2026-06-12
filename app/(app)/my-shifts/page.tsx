@@ -3,6 +3,7 @@ import { getWorkerShifts } from "@/lib/data/shifts"
 import PageHeader from "@/components/layout/PageHeader"
 import ShiftCard from "@/components/features/shifts/ShiftCard"
 import ConfirmShiftButton from "@/components/features/shifts/ConfirmShiftButton"
+import NextShiftHero from "@/components/features/shifts/NextShiftHero"
 import ShiftsRealtime from "@/components/features/shifts/ShiftsRealtime"
 import EmptyState from "@/components/ui/EmptyState"
 import { CalendarDays } from "lucide-react"
@@ -13,7 +14,13 @@ export default async function MyShiftsPage() {
   const { userId } = await requireRole(["worker"])
   const shifts = await getWorkerShifts(userId)
 
-  const upcoming = shifts.filter((s) => s.status !== "cancelled")
+  const today = new Date().toISOString().slice(0, 10)
+  const upcomingAll = shifts.filter((s) => s.status !== "cancelled")
+  const future = upcomingAll
+    .filter((s) => s.shift_date >= today)
+    .sort((a, b) => a.shift_date.localeCompare(b.shift_date))
+  const hero = future[0] ?? null
+  const upcoming = upcomingAll.filter((s) => s.id !== hero?.id)
   const cancelled = shifts.filter((s) => s.status === "cancelled")
 
   return (
@@ -29,8 +36,16 @@ export default async function MyShiftsPage() {
         />
       ) : (
         <div className="space-y-6">
+          {hero && (
+            <div className="mb-1">
+              <NextShiftHero shift={hero} />
+            </div>
+          )}
           {upcoming.length > 0 && (
             <div className="space-y-3">
+              <h2 className="text-sm font-semibold uppercase tracking-wide text-muted">
+                Upcoming
+              </h2>
               {upcoming.map((shift) => (
                 <ShiftCard key={shift.id} shift={shift} showWorker={false}>
                   {shift.assignment?.status === "assigned" && (
