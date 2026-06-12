@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;family=Manrope:wght@600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-high": "#dce9ff",
+                    "secondary-container": "#a7dbff",
+                    "on-tertiary-fixed-variant": "#3f484c",
+                    "on-primary-fixed": "#001e2f",
+                    "on-secondary-fixed": "#001e2e",
+                    "on-surface": "#0d1c2e",
+                    "surface-variant": "#d5e3fc",
+                    "background": "#f8f9ff",
+                    "tertiary": "#545d62",
+                    "on-primary-fixed-variant": "#004c6e",
+                    "surface-container-low": "#eff4ff",
+                    "surface-tint": "#006590",
+                    "secondary": "#2d6483",
+                    "on-tertiary-fixed": "#141d20",
+                    "on-primary-container": "#fcfcff",
+                    "secondary-fixed": "#c7e7ff",
+                    "on-tertiary-container": "#fafdff",
+                    "error": "#ba1a1a",
+                    "surface-dim": "#ccdbf3",
+                    "inverse-on-surface": "#eaf1ff",
+                    "on-secondary": "#ffffff",
+                    "outline-variant": "#bec8d1",
+                    "on-primary": "#ffffff",
+                    "surface-bright": "#f8f9ff",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-container": "#6d767a",
+                    "tertiary-fixed-dim": "#bfc8cd",
+                    "outline": "#6f7881",
+                    "on-surface-variant": "#3f484f",
+                    "error-container": "#ffdad6",
+                    "tertiary-fixed": "#dbe4e9",
+                    "inverse-primary": "#88ceff",
+                    "surface-container-highest": "#d5e3fc",
+                    "surface": "#f8f9ff",
+                    "on-error": "#ffffff",
+                    "on-secondary-container": "#2a6180",
+                    "primary-container": "#007cb1",
+                    "on-error-container": "#93000a",
+                    "primary-fixed": "#c8e6ff",
+                    "secondary-fixed-dim": "#99cdf0",
+                    "primary": "#00628d",
+                    "inverse-surface": "#233144",
+                    "surface-container": "#e6eeff",
+                    "primary-fixed-dim": "#88ceff",
+                    "on-tertiary": "#ffffff",
+                    "on-background": "#0d1c2e",
+                    "on-secondary-fixed-variant": "#0c4c6a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "stack-sm": "0.5rem",
+                    "gutter": "1rem",
+                    "touch-target-min": "44px",
+                    "stack-md": "1rem",
+                    "stack-lg": "1.5rem",
+                    "margin-mobile": "1.25rem"
+            },
+            "fontFamily": {
+                    "body-sm": ["Inter"],
+                    "display-sm": ["Manrope"],
+                    "label-caps": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-md": ["Manrope"],
+                    "label-numeric": ["JetBrains Mono"]
+            },
+            "fontSize": {
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "display-sm": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-caps": ["11px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "label-numeric": ["13px", {"lineHeight": "16px", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { -webkit-tap-highlight-color: transparent; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen font-body-lg selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar Shell -->
+<header class="w-full top-0 sticky bg-surface border-b border-outline-variant z-50 flex items-center justify-between px-margin-mobile h-[64px]">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant flex-shrink-0">
+<img alt="Coordinator Profile" class="w-full h-full object-cover" data-alt="A professional headshot of a healthcare coordinator wearing a subtle stethoscope around the neck, set against a clean medical office background with soft blue tones. The lighting is bright and professional, conveying authority and approachability in a modern clinical setting. High contrast and crisp detail." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEmTajhiLmU5M1N_xEgiEsq--6cUxG3u8FQ-MPaaGm0SZTzvrZnIs3gdaDA5dv-r7BiNV8T2amnqQrDo_6AvOTvvs_DK-skFxozfTwp6Vo-jYaR-cOyhQf_UE4eb0_uBzw60pEIErWCtNGTzbQdUxYpo4pJFfxpDwzLDxbKgEi-mdL3IEQlxYIm7x3y4tS7OhmBO0MhuwHW2MFWkOPF9Fyhqj7oh_KgjkNpd8YQQ0RgBgg4l1CR2rYPkePx8VS_OF9_lcKELAYiy4"/>
+</div>
+<h1 class="font-display-sm text-display-sm text-primary">CareSuite</h1>
+</div>
+<button class="w-11 h-11 flex items-center justify-center hover:bg-surface-container-low transition-colors rounded-full text-primary active:opacity-80">
+<span class="material-symbols-outlined">search</span>
+</button>
+</header>
+<main class="pb-32">
+<!-- Sub-Header & Region Filter -->
+<section class="px-margin-mobile py-stack-lg space-y-4">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-md text-headline-md text-on-surface">Upcoming Shifts</h2>
+<button class="flex items-center gap-2 px-4 py-2 bg-surface-container-lowest border border-outline-variant rounded-xl hover:bg-surface-container-low transition-colors active:scale-95" id="filterBtn">
+<span class="material-symbols-outlined text-sm">filter_list</span>
+<span class="font-label-caps text-label-caps uppercase text-on-surface-variant">Regions</span>
+</button>
+</div>
+<!-- Horizontal Quick Filter Chips -->
+<div class="flex gap-2 overflow-x-auto hide-scrollbar -mx-margin-mobile px-margin-mobile pb-2">
+<button class="bg-primary text-on-primary px-4 py-1.5 rounded-full font-label-caps text-label-caps whitespace-nowrap">ALL REGIONS</button>
+<button class="bg-surface-container-low text-on-surface-variant px-4 py-1.5 rounded-full font-label-caps text-label-caps whitespace-nowrap border border-outline-variant">NORTH WALES</button>
+<button class="bg-surface-container-low text-on-surface-variant px-4 py-1.5 rounded-full font-label-caps text-label-caps whitespace-nowrap border border-outline-variant">CHESTERSHIRE</button>
+<button class="bg-surface-container-low text-on-surface-variant px-4 py-1.5 rounded-full font-label-caps text-label-caps whitespace-nowrap border border-outline-variant">LIVERPOOL</button>
+</div>
+</section>
+<!-- Shifts List (Bento-style Cards) -->
+<section class="px-margin-mobile space-y-stack-md">
+<!-- Shift Card 1 -->
+<article class="bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden group hover:shadow-sm transition-shadow">
+<div class="p-4 space-y-4">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Sarah Jenkins</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Senior Practitioner</p>
+</div>
+</div>
+<div class="bg-secondary-container text-on-secondary-container px-2 py-1 rounded font-label-numeric text-label-numeric">
+                            ACTIVE
+                        </div>
+</div>
+<div class="space-y-2 border-t border-outline-variant pt-3">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">location_on</span>
+<span class="font-body-sm text-body-sm">Rhyl General Hospital, Wing B</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">schedule</span>
+<span class="font-label-numeric text-label-numeric">08:00 - 20:00 (12h Shift)</span>
+</div>
+</div>
+<div class="flex gap-2 pt-2">
+<button class="flex-1 bg-error text-on-error h-[48px] rounded-lg font-label-caps text-label-caps flex items-center justify-center gap-2 active:scale-[0.98] transition-transform">
+<span class="material-symbols-outlined text-[20px]">cancel_schedule_send</span>
+                            CANCEL &amp; NOTIFY
+                        </button>
+<button class="w-[48px] h-[48px] flex items-center justify-center border border-outline-variant rounded-lg text-primary hover:bg-surface-container-low">
+<span class="material-symbols-outlined">call</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Shift Card 2 -->
+<article class="bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden group hover:shadow-sm transition-shadow">
+<div class="p-4 space-y-4">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Mark Thompson</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">General Staff Nurse</p>
+</div>
+</div>
+<div class="bg-surface-container-high text-on-surface-variant px-2 py-1 rounded font-label-numeric text-label-numeric">
+                            PENDING
+                        </div>
+</div>
+<div class="space-y-2 border-t border-outline-variant pt-3">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">location_on</span>
+<span class="font-body-sm text-body-sm">Wrexham Maelor, ER Unit</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">schedule</span>
+<span class="font-label-numeric text-label-numeric">20:00 - 08:00 (Night)</span>
+</div>
+</div>
+<div class="flex gap-2 pt-2">
+<button class="flex-1 bg-error text-on-error h-[48px] rounded-lg font-label-caps text-label-caps flex items-center justify-center gap-2 active:scale-[0.98] transition-transform">
+<span class="material-symbols-outlined text-[20px]">cancel_schedule_send</span>
+                            CANCEL &amp; NOTIFY
+                        </button>
+<button class="w-[48px] h-[48px] flex items-center justify-center border border-outline-variant rounded-lg text-primary hover:bg-surface-container-low">
+<span class="material-symbols-outlined">call</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Shift Card 3 -->
+<article class="bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden group hover:shadow-sm transition-shadow">
+<div class="p-4 space-y-4">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Elena Rodriguez</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Care Assistant</p>
+</div>
+</div>
+<div class="bg-error-container text-on-error-container px-2 py-1 rounded font-label-numeric text-label-numeric">
+                            URGENT
+                        </div>
+</div>
+<div class="space-y-2 border-t border-outline-variant pt-3">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">location_on</span>
+<span class="font-body-sm text-body-sm">St. Asaph Care Home</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">schedule</span>
+<span class="font-label-numeric text-label-numeric">07:00 - 15:00 (AM)</span>
+</div>
+</div>
+<div class="flex gap-2 pt-2">
+<button class="flex-1 bg-error text-on-error h-[48px] rounded-lg font-label-caps text-label-caps flex items-center justify-center gap-2 active:scale-[0.98] transition-transform">
+<span class="material-symbols-outlined text-[20px]">cancel_schedule_send</span>
+                            CANCEL &amp; NOTIFY
+                        </button>
+<button class="w-[48px] h-[48px] flex items-center justify-center border border-outline-variant rounded-lg text-primary hover:bg-surface-container-low">
+<span class="material-symbols-outlined">call</span>
+</button>
+</div>
+</div>
+</article>
+</section>
+</main>
+<!-- FAB for adding new shift -->
+<button class="fixed bottom-24 right-6 w-14 h-14 bg-primary-container text-on-primary-container rounded-full shadow-lg flex items-center justify-center hover:shadow-xl transition-all active:scale-90 z-40">
+<span class="material-symbols-outlined text-[28px]">add</span>
+</button>
+<!-- BottomNavBar Shell -->
+<nav class="fixed bottom-0 w-full z-50 bg-surface border-t border-outline-variant shadow-sm flex justify-around items-center h-[80px] pb-safe">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high transition-colors scale-95 duration-100" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-caps text-label-caps">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 transition-transform scale-95 duration-100" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">calendar_today</span>
+<span class="font-label-caps text-label-caps">Shifts</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high transition-colors scale-95 duration-100" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-label-caps text-label-caps">Staff</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high transition-colors scale-95 duration-100" href="#">
+<span class="material-symbols-outlined">notifications</span>
+<span class="font-label-caps text-label-caps">Alerts</span>
+</a>
+</nav>
+<!-- Simple Feedback Toast logic -->
+<script>
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                if (btn.innerText.includes('CANCEL')) {
+                    const staffName = btn.closest('article').querySelector('h3').innerText;
+                    alert(`Notifying ${staffName} of shift cancellation. Notification sent to mobile device.`);
+                }
+            });
+        });
+
+        // Add visual haptic-like feedback on touch
+        document.addEventListener('touchstart', function() {}, true);
+    </script>
+</body></html>

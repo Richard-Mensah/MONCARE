@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Moncare Rhyl - Onboarding &amp; Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-container": "#5ccdff",
+                    "on-secondary-container": "#005571",
+                    "status-confirmed": "#1CBF99",
+                    "surface-variant": "#e0e3e5",
+                    "status-pending": "#F59E0B",
+                    "tertiary-fixed": "#6efad1",
+                    "on-error": "#ffffff",
+                    "primary": "#00628d",
+                    "secondary-fixed": "#c1e8ff",
+                    "surface": "#f7f9fb",
+                    "tertiary-fixed-dim": "#4cddb5",
+                    "surface-tint": "#006590",
+                    "on-primary-container": "#fcfcff",
+                    "on-secondary-fixed": "#001e2b",
+                    "primary-fixed-dim": "#88ceff",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-low": "#f2f4f6",
+                    "tertiary-container": "#008469",
+                    "background": "#f7f9fb",
+                    "on-tertiary-container": "#f5fff9",
+                    "text-secondary": "#64748B",
+                    "secondary-fixed-dim": "#72d2ff",
+                    "surface-container-highest": "#e0e3e5",
+                    "inverse-on-surface": "#eff1f3",
+                    "on-error-container": "#93000a",
+                    "on-primary-fixed-variant": "#004c6e",
+                    "on-surface-variant": "#3f484f",
+                    "surface-container-high": "#e6e8ea",
+                    "surface-dim": "#d8dadc",
+                    "primary-container": "#007cb1",
+                    "tertiary": "#006952",
+                    "border-light": "#E2E8F0",
+                    "primary-fixed": "#c8e6ff",
+                    "status-canceled": "#EF4444",
+                    "on-background": "#191c1e",
+                    "surface-container": "#eceef0",
+                    "surface-bright": "#f7f9fb",
+                    "inverse-primary": "#88ceff",
+                    "error-container": "#ffdad6",
+                    "text-main": "#222222",
+                    "on-secondary-fixed-variant": "#004d66",
+                    "on-tertiary-fixed": "#002118",
+                    "on-tertiary-fixed-variant": "#00513f",
+                    "on-primary-fixed": "#001e2f",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "error": "#ba1a1a",
+                    "on-primary": "#ffffff",
+                    "secondary": "#006687",
+                    "outline-variant": "#bec8d1",
+                    "on-surface": "#191c1e",
+                    "inverse-surface": "#2d3133",
+                    "outline": "#6f7881"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "unit": "4px",
+                    "stack-lg": "32px",
+                    "stack-sm": "8px",
+                    "gutter-md": "24px",
+                    "margin-page": "32px",
+                    "stack-md": "16px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Hanken Grotesk"],
+                    "data-tabular": ["Hanken Grotesk"],
+                    "body-md": ["Hanken Grotesk"],
+                    "headline-lg": ["Hanken Grotesk"],
+                    "headline-md": ["Hanken Grotesk"],
+                    "label-sm": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "data-tabular": ["15px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-sm": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Hanken Grotesk', sans-serif;
+            background-color: #f7f9fb;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #E2E8F0;
+            border-radius: 10px;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #00628d;
+        }
+        .toggle-checkbox:checked + .toggle-label .toggle-dot {
+            transform: translateX(100%);
+        }
+    </style>
+</head>
+<body class="flex min-h-screen text-on-surface">
+<!-- SideNavBar Anchor -->
+<aside class="bg-surface-container-lowest dark:bg-inverse-surface h-screen w-64 fixed left-0 top-0 border-r border-border-light dark:border-outline-variant flex flex-col py-margin-page z-50">
+<div class="px-6 mb-stack-lg">
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-inverse-primary">Care Management</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Moncare &amp; Medygg Care</p>
+</div>
+<nav class="flex-1 px-4 space-y-1">
+<a class="flex items-center px-4 py-3 rounded transition-colors duration-200 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-on-surface-variant/10" href="#">
+<span class="material-symbols-outlined mr-3">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+<a class="flex items-center px-4 py-3 rounded transition-colors duration-200 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-on-surface-variant/10" href="#">
+<span class="material-symbols-outlined mr-3">calendar_month</span>
+<span class="font-body-md text-body-md">Shifts</span>
+</a>
+<a class="flex items-center px-4 py-3 rounded transition-colors duration-200 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-on-surface-variant/10" href="#">
+<span class="material-symbols-outlined mr-3">group</span>
+<span class="font-body-md text-body-md">Staff List</span>
+</a>
+<a class="flex items-center px-4 py-3 rounded transition-colors duration-200 text-primary dark:text-inverse-primary font-bold border-r-4 border-primary bg-surface-container-low" href="#">
+<span class="material-symbols-outlined mr-3">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</a>
+</nav>
+<div class="px-4 mt-auto">
+<button class="w-full bg-primary text-on-primary py-3 px-4 rounded font-bold flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined">add</span>
+                New Shift
+            </button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 ml-64 flex flex-col min-h-screen">
+<!-- TopAppBar Anchor -->
+<header class="bg-surface dark:bg-on-background border-b border-border-light dark:border-outline-variant sticky top-0 z-40 flex justify-between items-center px-margin-page h-16">
+<div class="flex items-center flex-1 max-w-xl">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-full pl-10 pr-4 py-2 text-body-md focus:ring-2 focus:ring-primary" placeholder="Search facilities or staff..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-full transition-transform active:scale-90">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="h-8 w-8 rounded-full overflow-hidden border border-border-light">
+<img alt="Administrator profile" class="h-full w-full object-cover" data-alt="A professional headshot of a female healthcare administrator in a clinical setting, wearing a white coat and stethoscope. The lighting is bright and clean, characteristic of a modern medical office with soft blue and white tones. The atmosphere is professional, empathetic, and authoritative, maintaining the clinical-modern brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjZ0zmCOQf-MsdVfXV4lcIAq7tZbwOV4NEXO1w5scLZvXc5RU60gMS5xBQ79NhzdnU4dD1hOvjSAAr5-yHUkjOlnNnXndu19GtAj8cWG3_OF8LSpVQlFk4IxoYEyH5fmIFWDop1OZxCBTH8pZUUUDsCejam1bIec_3k_YHnqhMGsT7h6cUN4o81Sz4rsJQaBKN_oaQY3E8kyHIzQFom6V3NaTWrcR35AhuNtlbk-JrTLuKnQJU8GV-bbNhJsiL6DdXrqtSH4ouzkc"/>
+</div>
+</div>
+</header>
+<!-- Page Content -->
+<div class="p-margin-page max-w-7xl mx-auto w-full">
+<!-- Header Section -->
+<section class="mb-stack-lg">
+<h2 class="font-headline-lg text-headline-lg text-primary">System Configuration</h2>
+<p class="font-body-lg text-body-lg text-text-secondary mt-1">Onboarding Rhyl staff and managing cross-center partnerships between Medygg Care locations.</p>
+</section>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-md">
+<!-- Rhyl Shift Onboarding Form -->
+<div class="lg:col-span-8 bg-surface-container-lowest border border-border-light p-gutter-md rounded-lg">
+<div class="flex items-center gap-3 mb-stack-md">
+<span class="material-symbols-outlined text-primary">assignment_ind</span>
+<h3 class="font-headline-md text-headline-md">Rhyl Shift Onboarding</h3>
+</div>
+<p class="text-on-surface-variant mb-stack-lg">Transitioning WhatsApp communication to the official digital platform. Complete the profile to activate shift eligibility.</p>
+<form class="space-y-stack-md">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-md">
+<div class="space-y-2">
+<label class="block font-label-sm text-label-sm text-on-surface-variant">STAFF MEMBER NAME</label>
+<input class="w-full border border-border-light rounded px-4 py-3 focus:border-primary focus:ring-0 transition-all outline-none" placeholder="e.g. David Evans" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="block font-label-sm text-label-sm text-on-surface-variant">WHATSAPP MOBILE NUMBER</label>
+<input class="w-full border border-border-light rounded px-4 py-3 focus:border-primary focus:ring-0 transition-all outline-none" placeholder="+44 7000 000000" type="tel"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="block font-label-sm text-label-sm text-on-surface-variant">PRIMARY ASSIGNMENT (RHYL HUB)</label>
+<select class="w-full border border-border-light rounded px-4 py-3 focus:border-primary focus:ring-0 transition-all outline-none">
+<option>Rhyl North General Hospital</option>
+<option>Coastal Residential Wing</option>
+<option>Medygg Outpatient Clinic</option>
+</select>
+</div>
+<div class="space-y-2 pt-2">
+<label class="flex items-start gap-3 cursor-pointer group">
+<input class="mt-1 w-5 h-5 text-primary border-border-light rounded focus:ring-primary" type="checkbox"/>
+<span class="text-body-md text-on-surface-variant group-hover:text-on-surface transition-colors">
+                                    I confirm this member has been verified through the legacy WhatsApp group and is eligible for immediate shift assignment.
+                                </span>
+</label>
+</div>
+<div class="pt-stack-md">
+<button class="bg-primary text-on-primary px-8 py-3 rounded font-bold hover:opacity-95 transition-all" type="submit">Complete Onboarding</button>
+</div>
+</form>
+</div>
+<!-- Notifications Settings -->
+<div class="lg:col-span-4 space-y-gutter-md">
+<div class="bg-surface-container-lowest border border-border-light p-gutter-md rounded-lg h-full">
+<div class="flex items-center gap-3 mb-stack-md">
+<span class="material-symbols-outlined text-primary">notifications_active</span>
+<h3 class="font-headline-md text-headline-md">Alert Logic</h3>
+</div>
+<p class="text-on-surface-variant text-body-md mb-stack-lg">Configure how Rhyl and Medygg staff receive critical shift updates.</p>
+<div class="space-y-stack-lg">
+<div class="flex items-center justify-between p-stack-sm bg-surface rounded-lg">
+<div>
+<p class="font-bold text-body-md">Instant SMS</p>
+<p class="text-label-sm text-on-surface-variant">High-priority cancellations</p>
+</div>
+<label class="relative inline-block w-12 h-6 cursor-pointer">
+<input checked="" class="sr-only toggle-checkbox" type="checkbox"/>
+<div class="toggle-label block w-full h-full bg-surface-container-highest rounded-full transition-colors duration-300">
+<div class="toggle-dot absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform duration-300"></div>
+</div>
+</label>
+</div>
+<div class="flex items-center justify-between p-stack-sm bg-surface rounded-lg">
+<div>
+<p class="font-bold text-body-md">App Push</p>
+<p class="text-label-sm text-on-surface-variant">Regular shift reminders</p>
+</div>
+<label class="relative inline-block w-12 h-6 cursor-pointer">
+<input checked="" class="sr-only toggle-checkbox" type="checkbox"/>
+<div class="toggle-label block w-full h-full bg-surface-container-highest rounded-full transition-colors duration-300">
+<div class="toggle-dot absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform duration-300"></div>
+</div>
+</label>
+</div>
+</div>
+<div class="mt-stack-lg p-stack-md border-l-4 border-status-pending bg-status-pending/5">
+<p class="text-label-sm text-on-surface font-bold mb-1">DATA COMPLIANCE</p>
+<p class="text-body-md text-on-surface-variant leading-tight">Moving from WhatsApp ensures all communication is GDPR compliant and logged in the central server.</p>
+</div>
+</div>
+</div>
+<!-- Partner Management Section -->
+<div class="lg:col-span-12 grid grid-cols-1 md:grid-cols-2 gap-gutter-md">
+<div class="bg-surface-container-lowest border border-border-light p-gutter-md rounded-lg flex flex-col">
+<div class="flex items-center justify-between mb-stack-md">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">hub</span>
+<h3 class="font-headline-md text-headline-md">Partner Management</h3>
+</div>
+<span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-label-sm">Active Sync</span>
+</div>
+<p class="text-on-surface-variant mb-stack-lg">Link Rhyl operations with Medygg Care regional centers to allow staff mobility across Criccieth and Porthmadog.</p>
+<div class="space-y-stack-md flex-1">
+<!-- Medygg Criccieth -->
+<div class="flex items-center gap-4 p-4 border border-border-light rounded hover:bg-surface transition-colors cursor-pointer group">
+<div class="w-12 h-12 bg-primary-fixed rounded flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">location_on</span>
+</div>
+<div class="flex-1">
+<h4 class="font-bold text-body-md">Medygg Care - Criccieth</h4>
+<p class="text-label-sm text-on-surface-variant">8 Active Cross-Hires</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:translate-x-1 transition-transform">chevron_right</span>
+</div>
+<!-- Medygg Porthmadog -->
+<div class="flex items-center gap-4 p-4 border border-border-light rounded hover:bg-surface transition-colors cursor-pointer group">
+<div class="w-12 h-12 bg-primary-fixed rounded flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">location_on</span>
+</div>
+<div class="flex-1">
+<h4 class="font-bold text-body-md">Medygg Care - Porthmadog</h4>
+<p class="text-label-sm text-on-surface-variant">14 Active Cross-Hires</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:translate-x-1 transition-transform">chevron_right</span>
+</div>
+</div>
+<button class="mt-stack-lg border border-primary text-primary font-bold py-2 rounded hover:bg-primary/5 transition-colors">Link New Center</button>
+</div>
+<!-- Data Export Section -->
+<div class="bg-surface-container-lowest border border-border-light p-gutter-md rounded-lg">
+<div class="flex items-center gap-3 mb-stack-md">
+<span class="material-symbols-outlined text-primary">download_for_offline</span>
+<h3 class="font-headline-md text-headline-md">Reports &amp; Exports</h3>
+</div>
+<p class="text-on-surface-variant mb-stack-lg">Generate comprehensive shift data for payroll and compliance auditing.</p>
+<div class="space-y-stack-md">
+<div class="p-stack-md border border-border-light rounded-lg">
+<div class="flex justify-between items-start mb-2">
+<div>
+<p class="font-bold text-body-md">Weekly Shift Report</p>
+<p class="text-label-sm text-on-surface-variant">Last generated: 2 hours ago</p>
+</div>
+<button class="text-primary p-2 hover:bg-primary-fixed rounded-full transition-colors">
+<span class="material-symbols-outlined">download</span>
+</button>
+</div>
+<div class="flex gap-2">
+<span class="bg-surface-container-high px-2 py-0.5 rounded text-label-sm text-on-surface-variant">CSV</span>
+<span class="bg-surface-container-high px-2 py-0.5 rounded text-label-sm text-on-surface-variant">PDF</span>
+</div>
+</div>
+<div class="p-stack-md border border-border-light rounded-lg opacity-60">
+<div class="flex justify-between items-start mb-2">
+<div>
+<p class="font-bold text-body-md">Monthly Compliance Audit</p>
+<p class="text-label-sm text-on-surface-variant">Scheduled for 1st of Month</p>
+</div>
+<button class="text-on-surface-variant p-2 cursor-not-allowed">
+<span class="material-symbols-outlined">lock</span>
+</button>
+</div>
+</div>
+<div class="pt-stack-sm">
+<div class="bg-surface p-4 rounded-lg flex items-center justify-between">
+<div class="flex items-center gap-3 text-primary">
+<span class="material-symbols-outlined">cloud_sync</span>
+<span class="font-bold text-body-md">Automated S3 Export</span>
+</div>
+<span class="text-status-confirmed font-bold text-label-sm uppercase">Enabled</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Visual Element / Illustration Row -->
+<div class="lg:col-span-12 relative h-48 rounded-lg overflow-hidden border border-border-light">
+<img alt="Clinical setting" class="absolute inset-0 w-full h-full object-cover grayscale-[30%] opacity-80" data-alt="A futuristic, wide-angle interior shot of a minimalist, high-end medical research facility in Wales. The architecture features clean glass panels, soft white LED lighting, and polished slate floors. Through the large windows, a serene coastal landscape of Porthmadog is visible during a soft blue twilight. The image conveys a sense of clinical precision, trust, and advanced care technology." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBn3z1C4TtAyIPNMGavdk5K2JJvOTN4fFbvfVYPZVF_ImEl-waankroCCdxT6uAb9rIzJMdaaWydpneJwu8miUwu4fBxvat5R1oy5ohh8ostzGcMVoXSTKvJVbNeCBEFhSwlFQIpuXRpw-EEYH2OCA4-xGPU0VpeBb0ZjRIwVPzb7tGYRHLBCqDoUlZvxy01xh4CiejzyDDEvBKmHIlNbyg5y1cr-oEXS1XplKo52kBV4MIQT5IKdnXLOaUJ-vnif3w-9FP2GZHmIk"/>
+<div class="absolute inset-0 bg-gradient-to-r from-primary/80 to-transparent flex items-center p-gutter-md">
+<div class="text-on-primary max-w-lg">
+<h4 class="font-headline-md text-headline-md mb-2">Rhyl Operation Hub</h4>
+<p class="font-body-md">Seamlessly managing 45+ staff members across the North Wales care corridor. Moving beyond chat groups to a unified ecosystem.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer / Feedback -->
+<footer class="mt-auto p-margin-page border-t border-border-light bg-surface-container-lowest">
+<div class="flex flex-col md:flex-row justify-between items-center gap-stack-md text-on-surface-variant text-label-sm">
+<p>© 2024 Moncare &amp; Medygg Care Systems. All Rights Reserved.</p>
+<div class="flex gap-stack-md">
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors" href="#">Staff Support</a>
+<a class="hover:text-primary transition-colors" href="#">System Health</a>
+</div>
+</div>
+</footer>
+</main>
+<script>
+        // Micro-interactions for form and toggles
+        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                if (this.checked) {
+                    console.log('Notification setting enabled');
+                } else {
+                    console.log('Notification setting disabled');
+                }
+            });
+        });
+
+        // Simple smooth scaling for buttons
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('mousedown', () => btn.classList.add('scale-95'));
+            btn.addEventListener('mouseup', () => btn.classList.remove('scale-95'));
+            btn.addEventListener('mouseleave', () => btn.classList.remove('scale-95'));
+        });
+    </script>
+</body></html>

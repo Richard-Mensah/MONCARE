@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Medygg &amp; Moncare Synchronization Portal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-container": "#5ccdff",
+                        "on-secondary-container": "#005571",
+                        "status-confirmed": "#1CBF99",
+                        "surface-variant": "#e0e3e5",
+                        "status-pending": "#F59E0B",
+                        "tertiary-fixed": "#6efad1",
+                        "on-error": "#ffffff",
+                        "primary": "#00628d",
+                        "secondary-fixed": "#c1e8ff",
+                        "surface": "#f7f9fb",
+                        "tertiary-fixed-dim": "#4cddb5",
+                        "surface-tint": "#006590",
+                        "on-primary-container": "#fcfcff",
+                        "on-secondary-fixed": "#001e2b",
+                        "primary-fixed-dim": "#88ceff",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-low": "#f2f4f6",
+                        "tertiary-container": "#008469",
+                        "background": "#f7f9fb",
+                        "on-tertiary-container": "#f5fff9",
+                        "text-secondary": "#64748B",
+                        "secondary-fixed-dim": "#72d2ff",
+                        "surface-container-highest": "#e0e3e5",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed-variant": "#004c6e",
+                        "on-surface-variant": "#3f484f",
+                        "surface-container-high": "#e6e8ea",
+                        "surface-dim": "#d8dadc",
+                        "primary-container": "#007cb1",
+                        "tertiary": "#006952",
+                        "border-light": "#E2E8F0",
+                        "primary-fixed": "#c8e6ff",
+                        "status-canceled": "#EF4444",
+                        "on-background": "#191c1e",
+                        "surface-container": "#eceef0",
+                        "surface-bright": "#f7f9fb",
+                        "inverse-primary": "#88ceff",
+                        "error-container": "#ffdad6",
+                        "text-main": "#222222",
+                        "on-secondary-fixed-variant": "#004d66",
+                        "on-tertiary-fixed": "#002118",
+                        "on-tertiary-fixed-variant": "#00513f",
+                        "on-primary-fixed": "#001e2f",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-primary": "#ffffff",
+                        "secondary": "#006687",
+                        "outline-variant": "#bec8d1",
+                        "on-surface": "#191c1e",
+                        "inverse-surface": "#2d3133",
+                        "outline": "#6f7881"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "stack-lg": "32px",
+                        "stack-sm": "8px",
+                        "gutter-md": "24px",
+                        "margin-page": "32px",
+                        "stack-md": "16px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Hanken Grotesk"],
+                        "data-tabular": ["Hanken Grotesk"],
+                        "body-md": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "label-sm": ["Hanken Grotesk"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Hanken Grotesk', sans-serif;
+            background-color: #f7f9fb;
+        }
+        .communication-pulse {
+            position: relative;
+        }
+        .communication-pulse::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00628d, transparent);
+            transform: translate(-50%, -50%);
+            animation: bridge-pulse 2s infinite ease-in-out;
+        }
+        @keyframes bridge-pulse {
+            0% { opacity: 0.2; transform: translate(-50%, -50%) scaleX(0.8); }
+            50% { opacity: 1; transform: translate(-50%, -50%) scaleX(1); }
+            100% { opacity: 0.2; transform: translate(-50%, -50%) scaleX(0.8); }
+        }
+        .alert-row:first-child {
+            border-left: 4px solid #00628d;
+            background-color: #f0f7ff;
+        }
+    </style>
+</head>
+<body class="text-on-surface">
+<!-- SideNavBar Anchor -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-surface-container-lowest dark:bg-inverse-surface border-r border-border-light dark:border-outline-variant flex flex-col py-margin-page z-50">
+<div class="px-6 mb-stack-lg">
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-inverse-primary">Care Management</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant opacity-70">Moncare &amp; Medygg Care</p>
+</div>
+<nav class="flex-grow">
+<ul class="space-y-1">
+<li>
+<a class="flex items-center px-6 py-3 font-body-md text-body-md transition-colors duration-200 hover:bg-surface-container-low dark:hover:bg-on-surface-variant/10 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="dashboard">dashboard</span>
+                        Dashboard
+                    </a>
+</li>
+<li>
+<a class="flex items-center px-6 py-3 font-body-md text-body-md transition-colors duration-200 hover:bg-surface-container-low dark:hover:bg-on-surface-variant/10 text-primary dark:text-inverse-primary font-bold border-r-4 border-primary" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="calendar_month">calendar_month</span>
+                        Shifts
+                    </a>
+</li>
+<li>
+<a class="flex items-center px-6 py-3 font-body-md text-body-md transition-colors duration-200 hover:bg-surface-container-low dark:hover:bg-on-surface-variant/10 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="group">group</span>
+                        Staff List
+                    </a>
+</li>
+<li>
+<a class="flex items-center px-6 py-3 font-body-md text-body-md transition-colors duration-200 hover:bg-surface-container-low dark:hover:bg-on-surface-variant/10 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="settings">settings</span>
+                        Settings
+                    </a>
+</li>
+</ul>
+</nav>
+<div class="px-6 mt-auto">
+<button class="w-full bg-primary text-on-primary py-3 px-4 rounded-xl font-body-md flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+                New Shift
+            </button>
+</div>
+</aside>
+<!-- TopAppBar Anchor -->
+<header class="flex justify-between items-center px-margin-page h-16 ml-64 bg-surface dark:bg-on-background border-b border-border-light dark:border-outline-variant docked full-width top-0 sticky z-40">
+<div class="flex items-center gap-4">
+<h2 class="font-headline-md text-headline-md font-extrabold text-primary dark:text-inverse-primary tracking-tight">Medygg Care Shift Portal</h2>
+<div class="hidden md:flex bg-surface-container rounded-full px-4 py-1 items-center gap-2 border border-outline-variant">
+<span class="material-symbols-outlined text-on-surface-variant text-sm" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md w-64" placeholder="Search shifts or locations..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-full transition-transform active:scale-90">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<div class="flex items-center gap-3 pl-4 border-l border-outline-variant">
+<div class="text-right">
+<p class="font-label-sm text-on-surface leading-none">Admin User</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-wider">Medygg Admin</p>
+</div>
+<img alt="Administrator profile" class="w-8 h-8 rounded-full bg-secondary-container" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9rPMaEkEXSpcWY5FPbDbuc_Ot8w6lLRz9xhOdWgP6OvrG0GqL8i70Soe6oCHaUHNTiNrT9ODjHrm-f89Q-8Tzm8A_prMi-wBtt_ndEWm-x_w_EiT0552FcJnUwBcU6ND2lu7GCYbHkG3uC2cztdTCuXnTkDJLdw5Y-39GAl2MbOrauCTcsuwUqQKLHBQZVAZkyYS9eOgt9xM8nEcjfbRMnhBx6tpk01DwBc53x8qoz1D5GCSGo-ntiMB-pW6Aj1zbgKW_6BBRRLo"/>
+</div>
+</div>
+</header>
+<main class="ml-64 p-margin-page">
+<!-- Dashboard Top Grid -->
+<div class="grid grid-cols-12 gap-gutter-md">
+<!-- Communication Bridge Visualization -->
+<section class="col-span-12 lg:col-span-8 bg-surface-container-lowest rounded-xl border border-border-light p-stack-md relative overflow-hidden">
+<div class="flex justify-between items-center mb-6">
+<div>
+<h3 class="font-headline-md text-primary">Communication Bridge</h3>
+<p class="font-body-md text-on-surface-variant">Active synchronization between Medygg &amp; Moncare</p>
+</div>
+<span class="bg-status-confirmed/10 text-status-confirmed px-3 py-1 rounded-full font-label-sm flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-status-confirmed animate-pulse"></span>
+                        LIVE SYNC
+                    </span>
+</div>
+<div class="flex items-center justify-between px-12 py-8 communication-pulse">
+<div class="flex flex-col items-center gap-2 z-10 bg-surface-container-lowest p-4 rounded-xl border border-outline-variant shadow-sm">
+<div class="w-16 h-16 rounded-full bg-primary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="medical_services">medical_services</span>
+</div>
+<p class="font-label-sm font-bold text-primary">MEDYGG</p>
+<p class="text-[10px] text-on-surface-variant">Permanent Staff</p>
+</div>
+<div class="flex flex-col items-center gap-2 z-10 bg-surface-container-lowest p-4 rounded-xl border border-outline-variant shadow-sm">
+<div class="w-16 h-16 rounded-full bg-secondary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary text-3xl" data-icon="support_agent">support_agent</span>
+</div>
+<p class="font-label-sm font-bold text-secondary">MONCARE</p>
+<p class="text-[10px] text-on-surface-variant">Support Staff</p>
+</div>
+</div>
+<div class="mt-6 flex justify-center">
+<button class="bg-status-canceled hover:bg-red-700 text-white font-bold py-4 px-8 rounded-xl shadow-lg transition-all flex items-center gap-3 transform hover:scale-[1.02] active:scale-95">
+<span class="material-symbols-outlined" data-icon="cancel">cancel</span>
+                        Cancel Shift &amp; Notify Staff
+                    </button>
+</div>
+</section>
+<!-- Real-time Alert Log -->
+<section class="col-span-12 lg:col-span-4 bg-surface-container-lowest rounded-xl border border-border-light flex flex-col overflow-hidden">
+<div class="p-stack-md border-b border-border-light bg-surface-container-low">
+<h3 class="font-label-sm text-primary uppercase tracking-widest flex items-center gap-2">
+<span class="material-symbols-outlined text-lg" data-icon="history">history</span>
+                        Real-time Alert Log
+                    </h3>
+</div>
+<div class="flex-grow overflow-y-auto max-h-[400px]">
+<div class="p-stack-sm alert-row border-b border-border-light transition-colors hover:bg-surface-container">
+<p class="text-label-sm font-bold text-status-canceled">Medygg Canceled Shift #123</p>
+<p class="text-body-md text-on-surface-variant">Moncare Coordinator Notified</p>
+<p class="text-[10px] text-on-surface-variant mt-1">Today, 08:45 AM</p>
+</div>
+<div class="p-stack-sm border-b border-border-light transition-colors hover:bg-surface-container">
+<p class="text-label-sm font-bold text-on-surface">Shift #122 Confirmed</p>
+<p class="text-body-md text-on-surface-variant">Permanent Staff Assigned</p>
+<p class="text-[10px] text-on-surface-variant mt-1">Today, 08:30 AM</p>
+</div>
+<div class="p-stack-sm border-b border-border-light transition-colors hover:bg-surface-container">
+<p class="text-label-sm font-bold text-status-pending">Moncare Request Received</p>
+<p class="text-body-md text-on-surface-variant">Criccieth - Evening Shift</p>
+<p class="text-[10px] text-on-surface-variant mt-1">Yesterday, 10:15 PM</p>
+</div>
+<div class="p-stack-sm border-b border-border-light transition-colors hover:bg-surface-container">
+<p class="text-label-sm font-bold text-on-surface">Handover Complete</p>
+<p class="text-body-md text-on-surface-variant">Shift #119 - Porthmadog</p>
+<p class="text-[10px] text-on-surface-variant mt-1">Yesterday, 07:00 PM</p>
+</div>
+</div>
+</section>
+<!-- Shift Handover Section -->
+<section class="col-span-12 bg-white rounded-xl border border-border-light overflow-hidden shadow-sm">
+<div class="px-margin-page py-6 border-b border-border-light flex justify-between items-center">
+<div>
+<h3 class="font-headline-md text-primary">Shift Handover &amp; Coverage</h3>
+<p class="font-body-md text-on-surface-variant">Mark shifts for permanent staff takeover at key locations.</p>
+</div>
+<div class="flex gap-stack-sm">
+<button class="bg-surface-container-high px-4 py-2 rounded-lg font-label-sm text-on-surface-variant flex items-center gap-2 hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="filter_list">filter_list</span>
+                            Filter Locations
+                        </button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-border-light">
+<th class="p-4 font-label-sm text-on-surface-variant uppercase tracking-wider">Shift ID</th>
+<th class="p-4 font-label-sm text-on-surface-variant uppercase tracking-wider">Location</th>
+<th class="p-4 font-label-sm text-on-surface-variant uppercase tracking-wider">Time / Date</th>
+<th class="p-4 font-label-sm text-on-surface-variant uppercase tracking-wider">Current Status</th>
+<th class="p-4 font-label-sm text-on-surface-variant uppercase tracking-wider text-right">Permanent Staff Coverage</th>
+<th class="p-4 font-label-sm text-on-surface-variant uppercase tracking-wider">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-light">
+<!-- Shift Card 1: Criccieth -->
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="p-4 font-data-tabular">#CR-4402</td>
+<td class="p-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-lg" data-icon="location_on">location_on</span>
+<span class="font-bold">Criccieth Care Home</span>
+</div>
+</td>
+<td class="p-4 font-data-tabular">
+<div class="text-body-md">08:00 - 16:00</div>
+<div class="text-[12px] text-on-surface-variant">Nov 24, 2023</div>
+</td>
+<td class="p-4">
+<span class="bg-status-pending/10 text-status-pending px-3 py-1 rounded-full font-label-sm">Moncare Assigned</span>
+</td>
+<td class="p-4 text-right">
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+<span class="ml-3 text-label-sm font-medium text-on-surface-variant">Available</span>
+</label>
+</td>
+<td class="p-4">
+<button class="bg-primary text-on-primary px-3 py-1 rounded-lg text-label-sm hover:opacity-90">Take Over</button>
+</td>
+</tr>
+<!-- Shift Card 2: Porthmadog -->
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="p-4 font-data-tabular">#PO-5510</td>
+<td class="p-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-lg" data-icon="location_on">location_on</span>
+<span class="font-bold">Porthmadog Annex</span>
+</div>
+</td>
+<td class="p-4 font-data-tabular">
+<div class="text-body-md">14:00 - 22:00</div>
+<div class="text-[12px] text-on-surface-variant">Nov 24, 2023</div>
+</td>
+<td class="p-4">
+<span class="bg-status-confirmed/10 text-status-confirmed px-3 py-1 rounded-full font-label-sm">Permanent Taken</span>
+</td>
+<td class="p-4 text-right">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+<span class="ml-3 text-label-sm font-medium text-primary">Assigned</span>
+</label>
+</td>
+<td class="p-4">
+<button class="text-on-surface-variant bg-surface-container px-3 py-1 rounded-lg text-label-sm hover:bg-surface-variant">View Details</button>
+</td>
+</tr>
+<!-- Shift Card 3: Criccieth -->
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="p-4 font-data-tabular">#CR-4409</td>
+<td class="p-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-lg" data-icon="location_on">location_on</span>
+<span class="font-bold">Criccieth Care Home</span>
+</div>
+</td>
+<td class="p-4 font-data-tabular">
+<div class="text-body-md">20:00 - 08:00</div>
+<div class="text-[12px] text-on-surface-variant">Nov 25, 2023</div>
+</td>
+<td class="p-4">
+<span class="bg-status-canceled/10 text-status-canceled px-3 py-1 rounded-full font-label-sm">Urgent Cover</span>
+</td>
+<td class="p-4 text-right">
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+<span class="ml-3 text-label-sm font-medium text-on-surface-variant">Available</span>
+</label>
+</td>
+<td class="p-4">
+<button class="bg-primary text-on-primary px-3 py-1 rounded-lg text-label-sm hover:opacity-90">Take Over</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+</main>
+<!-- Contextual Information Card Overlay (Floating Interaction) -->
+<div class="fixed bottom-8 right-8 bg-inverse-surface text-inverse-on-surface p-4 rounded-xl shadow-2xl z-50 flex items-center gap-4 transform translate-y-24 transition-transform duration-300" id="handover-toast">
+<div class="bg-status-confirmed rounded-full p-1">
+<span class="material-symbols-outlined text-white text-sm" data-icon="check">check</span>
+</div>
+<div>
+<p class="font-label-sm">Shift #123 Synchronized</p>
+<p class="text-xs opacity-70">Moncare Coordinator has acknowledged handover.</p>
+</div>
+<button class="ml-4 opacity-50 hover:opacity-100" onclick="document.getElementById('handover-toast').classList.add('translate-y-24')">
+<span class="material-symbols-outlined text-sm" data-icon="close">close</span>
+</button>
+</div>
+<script>
+        // Micro-interaction: Toggle shift status visual feedback
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach(cb => {
+            cb.addEventListener('change', (e) => {
+                const toast = document.getElementById('handover-toast');
+                toast.classList.remove('translate-y-24');
+                setTimeout(() => {
+                    toast.classList.add('translate-y-24');
+                }, 4000);
+            });
+        });
+
+        // Simple alert log simulation
+        function addAlert() {
+            const logs = document.querySelector('.overflow-y-auto');
+            const newAlert = document.createElement('div');
+            newAlert.className = 'p-stack-sm alert-row border-b border-border-light transition-colors hover:bg-surface-container';
+            newAlert.innerHTML = `
+                <p class="text-label-sm font-bold text-primary">Bridge Sync Initiated</p>
+                <p class="text-body-md text-on-surface-variant">Criccieth Shift Data Verified</p>
+                <p class="text-[10px] text-on-surface-variant mt-1">Just now</p>
+            `;
+            logs.prepend(newAlert);
+        }
+
+        // Random alert simulation for dynamic feel
+        setInterval(() => {
+            if (Math.random() > 0.8) addAlert();
+        }, 10000);
+    </script>
+</body></html>

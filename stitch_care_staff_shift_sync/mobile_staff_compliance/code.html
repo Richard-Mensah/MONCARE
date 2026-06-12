@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Staff Directory | CareSuite</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;family=Manrope:wght@600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#dce9ff",
+                        "secondary-container": "#a7dbff",
+                        "on-tertiary-fixed-variant": "#3f484c",
+                        "on-primary-fixed": "#001e2f",
+                        "on-secondary-fixed": "#001e2e",
+                        "on-surface": "#0d1c2e",
+                        "surface-variant": "#d5e3fc",
+                        "background": "#f8f9ff",
+                        "tertiary": "#545d62",
+                        "on-primary-fixed-variant": "#004c6e",
+                        "surface-container-low": "#eff4ff",
+                        "surface-tint": "#006590",
+                        "secondary": "#2d6483",
+                        "on-tertiary-fixed": "#141d20",
+                        "on-primary-container": "#fcfcff",
+                        "secondary-fixed": "#c7e7ff",
+                        "on-tertiary-container": "#fafdff",
+                        "error": "#ba1a1a",
+                        "surface-dim": "#ccdbf3",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-secondary": "#ffffff",
+                        "outline-variant": "#bec8d1",
+                        "on-primary": "#ffffff",
+                        "surface-bright": "#f8f9ff",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-container": "#6d767a",
+                        "tertiary-fixed-dim": "#bfc8cd",
+                        "outline": "#6f7881",
+                        "on-surface-variant": "#3f484f",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed": "#dbe4e9",
+                        "inverse-primary": "#88ceff",
+                        "surface-container-highest": "#d5e3fc",
+                        "surface": "#f8f9ff",
+                        "on-error": "#ffffff",
+                        "on-secondary-container": "#2a6180",
+                        "primary-container": "#007cb1",
+                        "on-error-container": "#93000a",
+                        "primary-fixed": "#c8e6ff",
+                        "secondary-fixed-dim": "#99cdf0",
+                        "primary": "#00628d",
+                        "inverse-surface": "#233144",
+                        "surface-container": "#e6eeff",
+                        "primary-fixed-dim": "#88ceff",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#0d1c2e",
+                        "on-secondary-fixed-variant": "#0c4c6a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "stack-sm": "0.5rem",
+                        "gutter": "1rem",
+                        "touch-target-min": "44px",
+                        "stack-md": "1rem",
+                        "stack-lg": "1.5rem",
+                        "margin-mobile": "1.25rem"
+                    },
+                    "fontFamily": {
+                        "body-sm": ["Inter"],
+                        "display-sm": ["Manrope"],
+                        "label-caps": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Manrope"],
+                        "label-numeric": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "display-sm": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-caps": ["11px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "label-numeric": ["13px", {"lineHeight": "16px", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .scrim {
+            background-color: rgba(13, 28, 46, 0.4);
+            transition: opacity 0.3s ease;
+        }
+        .bottom-sheet {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .bottom-sheet.hidden-state {
+            transform: translateY(100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-lg overflow-x-hidden pb-[80px]">
+<!-- TopAppBar from JSON -->
+<header class="w-full top-0 sticky z-40 bg-surface border-b border-outline-variant flex items-center justify-between px-margin-mobile h-[64px]">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center overflow-hidden">
+<img alt="Coordinator Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCm7fpvpZrdiV1cOS8iXSkR2J8q336sSdKs42UAlmcPGOwm0rAC2u0MqYtWJNDpCt6leJBLacnUUnoyDu8-9RzI5O9G2rStsyq3QLhvjqzw5aRuYfmlfpeKgtv_MdGntI02aPBLWvJMK2Gjf07el1Zo_kt-9-6Qb2ktpGw_cRkkOwM419ji32WflnZVOybRxJgl6wyZyq1H6TVu2G_R4y12MtI7xbYlAPnhRQonX5bQA-VTJlc5l210n_DttmW147aCzuE1A0fOqUM"/>
+</div>
+<h1 class="font-display-sm text-display-sm text-primary">CareSuite</h1>
+</div>
+<button class="material-symbols-outlined text-primary hover:bg-surface-container-low transition-colors p-2 rounded-full active:opacity-80">search</button>
+</header>
+<main class="px-margin-mobile py-stack-lg">
+<!-- Search & Filter Area -->
+<div class="mb-stack-lg flex flex-col gap-stack-sm">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full h-[48px] pl-10 pr-4 bg-surface-container-lowest border border-outline rounded-xl focus:border-primary focus:ring-1 focus:ring-primary outline-none font-body-sm transition-all" placeholder="Search staff name or role..." type="text"/>
+</div>
+<div class="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+<button class="px-4 py-2 bg-primary text-on-primary rounded-full font-label-caps text-label-caps whitespace-nowrap">All Staff</button>
+<button class="px-4 py-2 bg-surface-container-high text-on-surface-variant rounded-full font-label-caps text-label-caps whitespace-nowrap">Compliance Issues</button>
+<button class="px-4 py-2 bg-surface-container-high text-on-surface-variant rounded-full font-label-caps text-label-caps whitespace-nowrap">On Shift</button>
+</div>
+</div>
+<!-- Staff List (Bento-lite Card Layout) -->
+<div class="flex flex-col gap-4">
+<!-- Staff Card 1: Critical Issue -->
+<div class="bg-surface-container-lowest border border-outline-variant p-4 rounded-xl flex items-center gap-4 hover:bg-surface-container-low transition-colors active:scale-95 cursor-pointer" onclick="openContactSheet('Sarah Jenkins', 'Senior Caretaker')">
+<div class="relative">
+<img class="w-14 h-14 rounded-full object-cover" data-alt="A professional headshot of a middle-aged female healthcare coordinator with a warm smile and professional attire. She is positioned against a clean, modern medical office background with soft blue tones and ample natural lighting. The style is sharp, corporate, and high-contrast, reflecting a trustworthy clinical environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfBQK4-iQZIe7TG1FsiPlU0lOX1R0BDNePqtyfE4Ov4qbK3QiZnQX2p2cqywNdO_LQ32cWdcThU3A7zaYrYpyGYfEaOBJeJiuMgkc_bDAbt-bz7vyAKvtSkefinZv_RMpvVUzK2j4mkWJWIVjv5-3RaEn6d5iCkVhIP4sCaBxyV2g0dCQatayc-s4yYujxSvn9CwjFPVyePy4K6pmzO3a-az9As91n19PuCYt0FBbDUd2HPXz3A3RsP-B5vZg0XYMo_pyf6aEOLWM"/>
+<div class="absolute bottom-0 right-0 w-3.5 h-3.5 bg-error border-2 border-surface-container-lowest rounded-full"></div>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-md text-headline-md text-on-surface">Sarah Jenkins</h3>
+<span class="font-label-numeric text-label-numeric text-on-surface-variant">ID: 4829</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-2">Senior Caretaker</p>
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 bg-error-container text-on-error-container rounded font-label-caps text-label-caps flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">warning</span>
+                            DBS EXPIRED
+                        </span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</div>
+<!-- Staff Card 2: Ready -->
+<div class="bg-surface-container-lowest border border-outline-variant p-4 rounded-xl flex items-center gap-4 hover:bg-surface-container-low transition-colors active:scale-95 cursor-pointer" onclick="openContactSheet('Michael Chen', 'General Nurse')">
+<div class="relative">
+<img class="w-14 h-14 rounded-full object-cover" data-alt="A portrait of a male Asian nurse in professional blue scrubs, standing in a brightly lit hospital corridor. The image is clean and well-lit with a clinical, modern atmosphere. The focus is sharp on the subject, while the background exhibits a soft bokeh of glass and sterile hospital surfaces, maintaining a professional medical directory feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDweg2auHzXh8UQh80-b1mvD2t7P7CtPqUnhOHOW6iyfjKuf8gVg9qYFBV-gEyFRrNrck6P9Chl-kuxsnwjBt2bvOHqyarrkdYZBq2bZtQLHt3BOcUBYTiuh0jJcmrmLO20u5o6rd2bYw_8xuyOodanp1ghxKu94kkOrK4mPkw90NH-nZJwy2-YVbLZPISuyN0mHhIPEJhkpdGGBIT7FohMzz1Fp_lMglXe9CkHcmsoRa-XL7THL4r56xSmk9myKtLtBzi_E76GOA"/>
+<div class="absolute bottom-0 right-0 w-3.5 h-3.5 bg-green-500 border-2 border-surface-container-lowest rounded-full"></div>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-md text-headline-md text-on-surface">Michael Chen</h3>
+<span class="font-label-numeric text-label-numeric text-on-surface-variant">ID: 5102</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-2">General Nurse</p>
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 bg-secondary-container text-on-secondary-container rounded font-label-caps text-label-caps flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+                            READY
+                        </span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</div>
+<!-- Staff Card 3: Expiring Soon -->
+<div class="bg-surface-container-lowest border border-outline-variant p-4 rounded-xl flex items-center gap-4 hover:bg-surface-container-low transition-colors active:scale-95 cursor-pointer" onclick="openContactSheet('Elena Rodriguez', 'Support Worker')">
+<div class="relative">
+<img class="w-14 h-14 rounded-full object-cover" data-alt="A sharp, professional headshot of a Hispanic female support worker with her hair tied back. She is wearing a professional lanyard over a neutral grey medical uniform. The lighting is high-contrast and bright, emphasizing a clean corporate medical aesthetic with a soft-focus background of a modern healthcare facility." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDARpUOMJO-IgBjzGPlZpOCH2P8k573qHjPrT3bpGiEaQMb7OmBOMuaXeJoLAeIyL1Cg_GgNSh13aA27-nEad87I-_25KyJuWj_p-g0YcoBnQ1uWUTFQgLyRJAgEumqz6EFKKLlt551NkmyM4xOpMgKeRiC1Y1nomTXOC6kH86JE1p0xmweuacqxWEXPefsDaY3lLAAvpGok-UZ_VufkWj9JATCeacHq0_pwN3kz3J4CcRxCU8qstSi5L7DPZ1QfZuMG9zfjdj8ORI"/>
+<div class="absolute bottom-0 right-0 w-3.5 h-3.5 bg-orange-400 border-2 border-surface-container-lowest rounded-full"></div>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-md text-headline-md text-on-surface">Elena Rodriguez</h3>
+<span class="font-label-numeric text-label-numeric text-on-surface-variant">ID: 3991</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-2">Support Worker</p>
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 bg-tertiary-fixed text-on-tertiary-fixed-variant rounded font-label-caps text-label-caps flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+                            EXPIRING (12d)
+                        </span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</div>
+<!-- Staff Card 4: Issue -->
+<div class="bg-surface-container-lowest border border-outline-variant p-4 rounded-xl flex items-center gap-4 hover:bg-surface-container-low transition-colors active:scale-95 cursor-pointer" onclick="openContactSheet('David Miller', 'Physiotherapist')">
+<div class="relative">
+<img class="w-14 h-14 rounded-full object-cover" data-alt="A portrait of a male professional in his late 30s with a neat beard and professional medical attire. The background is a crisp, bright physiotherapy clinic with modern equipment softly visible. The style is authoritative, corporate, and clean with high-key lighting that emphasizes clarity and professionalism." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDl2SFikuC05IcUaG9P9z5JElIHTqLqQn-seDc0dL24J6Jrlq8oVrg8qTqjN42snG2quW2yonkTSNerkcGiuqlRkofT9XJwpPx0V2yXE0yZq4FNUS7aV61Wtny5a2gJ5urqbfJ8Jf9u_6QaGqWqKNZkiatpm6Gp4U2k6pZ4yzzi-nbwxl_M09CCY9W8JfZMSI92IxfIyvCC8r9u-7RGDwOifW0ywzmveYeism3X4bBdysSgzCIBcq8Di9_TdqRgpEWQUcs1jM3nrAQ"/>
+<div class="absolute bottom-0 right-0 w-3.5 h-3.5 bg-error border-2 border-surface-container-lowest rounded-full"></div>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-md text-headline-md text-on-surface">David Miller</h3>
+<span class="font-label-numeric text-label-numeric text-on-surface-variant">ID: 6722</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-2">Physiotherapist</p>
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 bg-error-container text-on-error-container rounded font-label-caps text-label-caps flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">description</span>
+                            TRAINING MISSING
+                        </span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</div>
+</div>
+</main>
+<!-- Contact Bottom Sheet -->
+<div class="fixed inset-0 scrim z-50 hidden opacity-0" id="scrim" onclick="closeContactSheet()"></div>
+<div class="fixed bottom-0 left-0 right-0 bg-surface rounded-t-3xl z-[60] bottom-sheet hidden-state shadow-2xl p-margin-mobile flex flex-col gap-6" id="bottomSheet">
+<div class="flex justify-center">
+<div class="w-8 h-1 bg-outline-variant rounded-full"></div>
+</div>
+<div class="flex flex-col items-center gap-1">
+<h2 class="font-headline-md text-headline-md text-on-surface" id="sheetName">Staff Member</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant" id="sheetRole">Role Details</p>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<a class="flex flex-col items-center justify-center p-4 bg-primary text-on-primary rounded-2xl gap-2 active:scale-95 transition-transform h-touch-target-min" href="tel:000">
+<span class="material-symbols-outlined">call</span>
+<span class="font-label-caps text-label-caps">CALL NOW</span>
+</a>
+<a class="flex flex-col items-center justify-center p-4 bg-secondary text-on-secondary rounded-2xl gap-2 active:scale-95 transition-transform h-touch-target-min" href="sms:000">
+<span class="material-symbols-outlined">chat</span>
+<span class="font-label-caps text-label-caps">SEND SMS</span>
+</a>
+</div>
+<div class="border-t border-outline-variant pt-4 flex flex-col gap-3">
+<p class="font-label-caps text-label-caps text-on-surface-variant">QUICK ACTIONS</p>
+<button class="flex items-center justify-between w-full p-4 bg-surface-container-low rounded-xl active:opacity-80">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">mail</span>
+<span class="font-body-lg text-body-lg">Email Documents Link</span>
+</div>
+<span class="material-symbols-outlined text-outline">arrow_forward_ios</span>
+</button>
+<button class="flex items-center justify-between w-full p-4 bg-surface-container-low rounded-xl active:opacity-80">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">history</span>
+<span class="font-body-lg text-body-lg">View Compliance Logs</span>
+</div>
+<span class="material-symbols-outlined text-outline">arrow_forward_ios</span>
+</button>
+</div>
+<button class="w-full py-4 text-primary font-label-caps text-label-caps mt-2" onclick="closeContactSheet()">CANCEL</button>
+</div>
+<!-- BottomNavBar from JSON -->
+<nav class="fixed bottom-0 w-full z-50 bg-surface border-t border-outline-variant shadow-sm flex justify-around items-center h-[80px] pb-safe">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high scale-95 transition-transform duration-100" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-caps text-label-caps">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high scale-95 transition-transform duration-100" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="font-label-caps text-label-caps">Shifts</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 scale-95 transition-transform duration-100" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">groups</span>
+<span class="font-label-caps text-label-caps">Staff</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high scale-95 transition-transform duration-100" href="#">
+<span class="material-symbols-outlined">notifications</span>
+<span class="font-label-caps text-label-caps">Alerts</span>
+</a>
+</nav>
+<script>
+        const bottomSheet = document.getElementById('bottomSheet');
+        const scrim = document.getElementById('scrim');
+        const sheetName = document.getElementById('sheetName');
+        const sheetRole = document.getElementById('sheetRole');
+
+        function openContactSheet(name, role) {
+            sheetName.textContent = name;
+            sheetRole.textContent = role;
+            
+            scrim.classList.remove('hidden');
+            bottomSheet.classList.remove('hidden-state');
+            setTimeout(() => {
+                scrim.classList.add('opacity-100');
+            }, 10);
+        }
+
+        function closeContactSheet() {
+            scrim.classList.remove('opacity-100');
+            bottomSheet.classList.add('hidden-state');
+            setTimeout(() => {
+                scrim.classList.add('hidden');
+            }, 300);
+        }
+
+        // Search highlight interaction
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('scale-105');
+            searchInput.parentElement.classList.add('transition-transform');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('scale-105');
+        });
+    </script>
+</body></html>

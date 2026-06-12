@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Moncare Staff Portal - My Shifts</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-container": "#5ccdff",
+                        "on-secondary-container": "#005571",
+                        "status-confirmed": "#1CBF99",
+                        "surface-variant": "#e0e3e5",
+                        "status-pending": "#F59E0B",
+                        "tertiary-fixed": "#6efad1",
+                        "on-error": "#ffffff",
+                        "primary": "#00628d",
+                        "secondary-fixed": "#c1e8ff",
+                        "surface": "#f7f9fb",
+                        "tertiary-fixed-dim": "#4cddb5",
+                        "surface-tint": "#006590",
+                        "on-primary-container": "#fcfcff",
+                        "on-secondary-fixed": "#001e2b",
+                        "primary-fixed-dim": "#88ceff",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-low": "#f2f4f6",
+                        "tertiary-container": "#008469",
+                        "background": "#f7f9fb",
+                        "on-tertiary-container": "#f5fff9",
+                        "text-secondary": "#64748B",
+                        "secondary-fixed-dim": "#72d2ff",
+                        "surface-container-highest": "#e0e3e5",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed-variant": "#004c6e",
+                        "on-surface-variant": "#3f484f",
+                        "surface-container-high": "#e6e8ea",
+                        "surface-dim": "#d8dadc",
+                        "primary-container": "#007cb1",
+                        "tertiary": "#006952",
+                        "border-light": "#E2E8F0",
+                        "primary-fixed": "#c8e6ff",
+                        "status-canceled": "#EF4444",
+                        "on-background": "#191c1e",
+                        "surface-container": "#eceef0",
+                        "surface-bright": "#f7f9fb",
+                        "inverse-primary": "#88ceff",
+                        "error-container": "#ffdad6",
+                        "text-main": "#222222",
+                        "on-secondary-fixed-variant": "#004d66",
+                        "on-tertiary-fixed": "#002118",
+                        "on-tertiary-fixed-variant": "#00513f",
+                        "on-primary-fixed": "#001e2f",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-primary": "#ffffff",
+                        "secondary": "#006687",
+                        "outline-variant": "#bec8d1",
+                        "on-surface": "#191c1e",
+                        "inverse-surface": "#2d3133",
+                        "outline": "#6f7881"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "stack-lg": "32px",
+                        "stack-sm": "8px",
+                        "gutter-md": "24px",
+                        "margin-page": "32px",
+                        "stack-md": "16px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Hanken Grotesk"],
+                        "data-tabular": ["Hanken Grotesk"],
+                        "body-md": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "label-sm": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "data-tabular": ["15px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "headline-lg": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "label-sm": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Hanken Grotesk', sans-serif;
+            background-color: #f7f9fb;
+            color: #191c1e;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(226, 232, 240, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface min-h-screen">
+<!-- SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-surface-container-lowest dark:bg-inverse-surface border-r border-border-light dark:border-outline-variant flex flex-col py-margin-page z-50">
+<div class="px-6 mb-8">
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-inverse-primary leading-tight">Care Management</h1>
+<p class="text-on-surface-variant font-label-sm text-label-sm">Moncare &amp; Medygg Care</p>
+</div>
+<nav class="flex-1 px-3 space-y-1">
+<a class="flex items-center px-3 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-on-surface-variant/10 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-3">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+<a class="flex items-center px-3 py-3 text-primary dark:text-inverse-primary font-bold border-r-4 border-primary bg-surface-container-low transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-3">calendar_month</span>
+<span class="font-body-md text-body-md">Shifts</span>
+</a>
+<a class="flex items-center px-3 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-on-surface-variant/10 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-3">group</span>
+<span class="font-body-md text-body-md">Staff List</span>
+</a>
+<a class="flex items-center px-3 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-on-surface-variant/10 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-3">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</a>
+</nav>
+<div class="px-4 mt-auto">
+<button class="w-full bg-primary text-on-primary py-3 px-4 font-label-sm text-label-sm rounded-lg flex items-center justify-center gap-2 hover:bg-primary-container transition-all">
+<span class="material-symbols-outlined">add</span>
+                New Shift
+            </button>
+</div>
+</aside>
+<!-- TopAppBar -->
+<header class="flex justify-between items-center px-margin-page h-16 ml-64 bg-surface dark:bg-on-background border-b border-border-light dark:border-outline-variant docked full-width top-0 sticky z-40">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container border-none focus:ring-2 focus:ring-primary text-body-md rounded-lg" placeholder="Search shifts, locations..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="relative text-on-surface-variant hover:bg-surface-container transition-transform scale-95 active:scale-90 p-2 rounded-full">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border-2 border-surface"></span>
+</button>
+<div class="flex items-center gap-3">
+<div class="text-right hidden sm:block">
+<p class="font-label-sm text-label-sm text-on-surface font-bold">Sarah Jenkins</p>
+<p class="text-xs text-on-surface-variant">Administrator</p>
+</div>
+<img alt="Administrator profile" class="w-10 h-10 rounded-full object-cover border border-border-light" src="https://lh3.googleusercontent.com/aida/AP1WRLtzyRX5BcRbnr3hdA1jsZmL-O9tkHpwPwFh39uj7wHefT4mVhs5YeX5g-qesVsn_23qCQo3ilMgstlaMKYnUlRXLJJNX2Dk29IvdP0ahH_Zg4b3B7t4u3Fw-gZ7X4TAb9aZAOGI4h6o0gkI7QCVEBVYB02NqPUne6O9z8I_S2_-7XSrcENTqlIdcakKH0u-bMd_jHalFaiyHjKa7BrZrYYuKAcWamsr480Kf17jV4N75Kb0KNZL1qP7Lw"/>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="ml-64 p-margin-page max-w-[1400px]">
+<!-- Header -->
+<header class="mb-10">
+<h2 class="font-headline-lg text-headline-lg text-on-background mb-2">Welcome Sarah Jenkins - Rhyl Region</h2>
+<p class="text-on-surface-variant font-body-lg text-body-lg">Here is your shift overview for today and upcoming week.</p>
+</header>
+<div class="bento-grid">
+<!-- Hero Next Shift Card (Primary Focus) -->
+<section class="col-span-12 lg:col-span-8">
+<div class="relative overflow-hidden bg-white border border-border-light rounded-xl h-full shadow-sm group">
+<div class="absolute inset-0 z-0 overflow-hidden opacity-10">
+<img alt="Nurse background" class="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida/AP1WRLv8m4VqQuvFtGBttgqsE2AqQrjoRqrU_SXZ6tUa4krLMhoIHrFJeBZjReFeVNJj5P7i1ae9FvM1qOPg8osZM_hmAqrGoubzPVV2NbB10Todi3TvvUMUV2SMiP34yI9SHc2M7Ln-u1pyI8G1jqLqoonIZXw36Dk2kihmrDpXGZjrxtpBQ9IFg2y0_GkwSqX05B4W9F6z2N9W-LFjoZtODEsPBdnvpS_prVz0OBI6A90bCevToD68wPq1e0U"/>
+</div>
+<div class="relative z-10 p-gutter-md flex flex-col md:flex-row gap-8 items-center h-full">
+<div class="flex-1 space-y-4">
+<div class="flex items-center gap-2 text-primary font-bold">
+<span class="material-symbols-outlined">upcoming</span>
+<span class="uppercase tracking-widest text-xs">Primary Next Shift</span>
+</div>
+<div>
+<h3 class="text-4xl font-extrabold text-primary mb-1">Tomorrow, 08:00 — 16:30</h3>
+<p class="text-on-surface-variant flex items-center gap-1 font-body-lg">
+<span class="material-symbols-outlined text-primary">location_on</span>
+                                    Glan Clwyd Hospital, Bodelwyddan, Rhyl LL18 5UJ
+                                </p>
+</div>
+<div class="pt-4 flex items-center gap-4">
+<span class="bg-status-confirmed/10 text-status-confirmed border border-status-confirmed px-6 py-3 rounded-full font-bold text-lg flex items-center gap-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                    CONFIRMED - OK TO TRAVEL
+                                </span>
+</div>
+</div>
+<div class="w-full md:w-64 bg-surface-container-low p-gutter-md rounded-lg border border-border-light flex flex-col justify-between">
+<div>
+<p class="text-xs text-on-surface-variant uppercase font-bold mb-3">Assigned Patient</p>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed font-bold">JD</div>
+<p class="font-bold">John Doe</p>
+</div>
+</div>
+<button class="mt-6 w-full text-primary border border-primary py-2 rounded-lg font-bold hover:bg-primary-container hover:text-white transition-colors">
+                                View Details
+                            </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Alerts Sidebar -->
+<section class="col-span-12 lg:col-span-4">
+<div class="bg-white border border-border-light rounded-xl h-full flex flex-col overflow-hidden">
+<div class="p-4 border-b border-border-light bg-surface-container-low flex justify-between items-center">
+<h3 class="font-bold flex items-center gap-2 text-error">
+<span class="material-symbols-outlined">warning</span>
+                            Recent Alerts
+                        </h3>
+<span class="bg-error text-white text-[10px] px-2 py-0.5 rounded-full font-bold">1 NEW</span>
+</div>
+<div class="flex-1 p-4 space-y-4">
+<!-- Critical Alert -->
+<div class="bg-error-container/20 border-l-4 border-error p-4 rounded-r-lg">
+<div class="flex justify-between items-start mb-2">
+<p class="font-bold text-error">Shift Canceled</p>
+<span class="text-xs text-on-surface-variant">12m ago</span>
+</div>
+<p class="text-sm font-bold text-on-error-container mb-1">Medygg Porthmadog - DO NOT TRAVEL</p>
+<p class="text-xs text-on-surface-variant mb-4">The shift scheduled for Friday, Oct 25th has been withdrawn by the facility.</p>
+<button class="w-full bg-error text-white py-2 px-4 rounded-lg font-bold text-sm hover:bg-on-error-container transition-all flex items-center justify-center gap-2" id="ackButton">
+<span class="material-symbols-outlined text-base">check</span>
+                                Acknowledge Cancellation
+                            </button>
+</div>
+<!-- Regular Alert -->
+<div class="p-4 bg-surface border border-border-light rounded-lg">
+<div class="flex justify-between items-start mb-1">
+<p class="font-bold text-on-surface">Clock-in Reminder</p>
+<span class="text-xs text-on-surface-variant">2h ago</span>
+</div>
+<p class="text-sm text-on-surface-variant">Please remember to clock in using the GPS-verified portal upon arrival at Rhyl General.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Calendar Section -->
+<section class="col-span-12">
+<div class="bg-white border border-border-light rounded-xl overflow-hidden">
+<div class="p-gutter-md border-b border-border-light flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div>
+<h3 class="font-headline-md text-headline-md text-primary">Shift Calendar</h3>
+<p class="text-on-surface-variant">Your schedule for October 2024</p>
+</div>
+<div class="flex items-center bg-surface-container rounded-lg p-1">
+<button class="px-4 py-2 bg-white shadow-sm rounded-md font-bold text-sm">Week</button>
+<button class="px-4 py-2 hover:bg-surface-container-high rounded-md text-sm">Month</button>
+<button class="px-4 py-2 hover:bg-surface-container-high rounded-md text-sm">List</button>
+</div>
+</div>
+<div class="p-gutter-md">
+<div class="grid grid-cols-7 gap-2">
+<!-- Weekday Headers -->
+<div class="text-center py-2 text-xs font-bold text-on-surface-variant uppercase">Mon</div>
+<div class="text-center py-2 text-xs font-bold text-on-surface-variant uppercase">Tue</div>
+<div class="text-center py-2 text-xs font-bold text-on-surface-variant uppercase">Wed</div>
+<div class="text-center py-2 text-xs font-bold text-on-surface-variant uppercase">Thu</div>
+<div class="text-center py-2 text-xs font-bold text-on-surface-variant uppercase">Fri</div>
+<div class="text-center py-2 text-xs font-bold text-on-surface-variant uppercase">Sat</div>
+<div class="text-center py-2 text-xs font-bold text-on-surface-variant uppercase">Sun</div>
+<!-- Calendar Rows (Simplified Example) -->
+<div class="h-32 border border-border-light rounded-lg bg-surface p-2 opacity-50">
+<span class="text-xs font-bold text-on-surface-variant">20</span>
+</div>
+<div class="h-32 border border-border-light rounded-lg bg-surface p-2 opacity-50">
+<span class="text-xs font-bold text-on-surface-variant">21</span>
+</div>
+<div class="h-32 border border-border-light rounded-lg bg-white p-2">
+<span class="text-xs font-bold">22</span>
+<div class="mt-2 p-1.5 bg-status-confirmed/10 border border-status-confirmed rounded text-[10px] font-bold text-status-confirmed">
+                                    08:00 G. Clwyd
+                                </div>
+</div>
+<div class="h-32 border-2 border-primary rounded-lg bg-primary-fixed/30 p-2 ring-4 ring-primary/5 shadow-inner">
+<span class="text-xs font-bold text-primary">Today 23</span>
+<div class="mt-2 p-1.5 bg-white border border-border-light rounded shadow-sm text-[10px] text-on-surface">
+<p class="font-bold">No Shifts</p>
+<p class="text-[9px] text-on-surface-variant">Available for Pickup</p>
+</div>
+</div>
+<div class="h-32 border border-border-light rounded-lg bg-white p-2">
+<span class="text-xs font-bold">24</span>
+<div class="mt-2 p-1.5 bg-status-confirmed/10 border border-status-confirmed rounded text-[10px] font-bold text-status-confirmed">
+                                    08:00 G. Clwyd
+                                </div>
+</div>
+<div class="h-32 border border-border-light rounded-lg bg-white p-2">
+<span class="text-xs font-bold">25</span>
+<div class="mt-2 p-1.5 bg-error/10 border border-error rounded text-[10px] font-bold text-error line-through">
+                                    09:30 Porthmadog
+                                </div>
+</div>
+<div class="h-32 border border-border-light rounded-lg bg-white p-2">
+<span class="text-xs font-bold">26</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Micro-interaction for Acknowledgement -->
+<script>
+        document.getElementById('ackButton').addEventListener('click', function() {
+            const btn = this;
+            btn.innerHTML = '<span class="material-symbols-outlined animate-spin">sync</span> Processing...';
+            btn.classList.add('opacity-70', 'cursor-not-allowed');
+            
+            setTimeout(() => {
+                const parent = btn.closest('.bg-error-container\\/20');
+                parent.innerHTML = `
+                    <div class="flex items-center gap-3 text-status-confirmed py-4 animate-pulse">
+                        <span class="material-symbols-outlined text-2xl">check_circle</span>
+                        <p class="font-bold">Cancellation Acknowledged. Thank you Sarah.</p>
+                    </div>
+                `;
+                setTimeout(() => {
+                    parent.classList.add('opacity-0', 'transition-opacity', 'duration-500');
+                    setTimeout(() => parent.remove(), 500);
+                }, 3000);
+            }, 1000);
+        });
+    </script>
+</body></html>

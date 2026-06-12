@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Staffing Ops: North Wales - Live Map</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;family=Manrope:wght@600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-fixed-variant": "#0c4c6a",
+                    "error": "#ba1a1a",
+                    "tertiary-container": "#6d767a",
+                    "on-primary-fixed": "#001e2f",
+                    "on-primary": "#ffffff",
+                    "on-surface": "#0d1c2e",
+                    "on-secondary-container": "#2a6180",
+                    "secondary-fixed": "#c7e7ff",
+                    "on-tertiary-container": "#fafdff",
+                    "surface-tint": "#006590",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-fixed": "#dbe4e9",
+                    "on-error-container": "#93000a",
+                    "surface-container-low": "#eff4ff",
+                    "secondary-container": "#a7dbff",
+                    "on-error": "#ffffff",
+                    "tertiary": "#545d62",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-surface": "#233144",
+                    "error-container": "#ffdad6",
+                    "primary-container": "#007cb1",
+                    "inverse-on-surface": "#eaf1ff",
+                    "surface-container-high": "#dce9ff",
+                    "outline": "#6f7881",
+                    "on-surface-variant": "#3f484f",
+                    "surface": "#f8f9ff",
+                    "surface-container-highest": "#d5e3fc",
+                    "surface-container": "#e6eeff",
+                    "surface-bright": "#f8f9ff",
+                    "primary": "#00628d",
+                    "on-primary-container": "#fcfcff",
+                    "surface-variant": "#d5e3fc",
+                    "inverse-primary": "#88ceff",
+                    "on-secondary": "#ffffff",
+                    "secondary-fixed-dim": "#99cdf0",
+                    "on-background": "#0d1c2e",
+                    "tertiary-fixed-dim": "#bfc8cd",
+                    "primary-fixed": "#c8e6ff",
+                    "background": "#f8f9ff",
+                    "primary-fixed-dim": "#88ceff",
+                    "outline-variant": "#bec8d1",
+                    "on-tertiary-fixed": "#141d20",
+                    "on-primary-fixed-variant": "#004c6e",
+                    "on-tertiary-fixed-variant": "#3f484c",
+                    "surface-dim": "#ccdbf3",
+                    "on-secondary-fixed": "#001e2e",
+                    "secondary": "#2d6483"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "touch-target-min": "44px",
+                    "stack-md": "1rem",
+                    "stack-lg": "1.5rem",
+                    "stack-sm": "0.5rem",
+                    "margin-mobile": "1.25rem",
+                    "gutter": "1rem"
+            },
+            "fontFamily": {
+                    "display-sm": ["Manrope"],
+                    "body-sm": ["Inter"],
+                    "headline-md": ["Manrope"],
+                    "label-numeric": ["JetBrains Mono"],
+                    "body-lg": ["Inter"],
+                    "label-caps": ["Inter"]
+            },
+            "fontSize": {
+                    "display-sm": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "label-numeric": ["13px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-caps": ["11px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { -webkit-tap-highlight-color: transparent; }
+        .map-gradient {
+            background: radial-gradient(circle at center, transparent 0%, rgba(248, 249, 255, 0.4) 100%);
+        }
+        .bottom-sheet-transition {
+            transition: transform 0.4s cubic-bezier(0.33, 1, 0.68, 1);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background font-body-lg text-on-surface overflow-hidden h-screen w-full select-none">
+<!-- Top Navigation Anchor (Shared Component: TopAppBar) -->
+<header class="fixed top-0 w-full z-50 bg-surface dark:bg-on-surface border-b border-outline-variant dark:border-outline flex items-center justify-between px-margin-mobile h-touch-target-min transition-colors duration-200 active:opacity-80">
+<div class="flex items-center gap-stack-sm">
+<span class="material-symbols-outlined text-primary dark:text-inverse-primary" data-icon="menu">menu</span>
+<h1 class="font-display-sm text-display-sm font-bold text-primary dark:text-inverse-primary">Staffing Ops: North Wales</h1>
+</div>
+<div class="relative">
+<span class="material-symbols-outlined text-primary dark:text-inverse-primary" data-icon="notifications">notifications</span>
+<span class="absolute -top-1 -right-1 w-2 h-2 bg-error rounded-full"></span>
+</div>
+</header>
+<!-- Priority Alert Banner -->
+<div class="fixed top-[44px] left-0 w-full z-40 px-2 pt-2 animate-bounce-subtle">
+<div class="bg-error text-on-error px-4 py-3 rounded-xl flex items-center justify-between shadow-lg">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined" data-icon="warning" style="font-variation-settings: 'FILL' 1;">warning</span>
+<p class="font-body-sm font-bold">David Evans: Shift Canceled. Reroute Now</p>
+</div>
+<span class="material-symbols-outlined text-[20px]" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+<!-- Main Map Canvas -->
+<main class="relative w-full h-full pt-[44px] pb-16">
+<!-- Background Map Image Placeholder -->
+<div class="absolute inset-0 w-full h-full bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover opacity-60 grayscale-[0.2]" data-alt="A clean, high-contrast digital map interface showing the geographical landscape of North Wales. The map style is minimalist healthcare-themed with soft whites, pale blues, and distinct road networks. Several glowing staff marker icons in primary blue and critical emergency red are strategically placed across the terrain, indicating real-time locations of medical professionals." data-location="North Wales" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOhMYo5y-5fnNnHdCLBrQVzV_60z3asIYdn5zzsxwHjNFjSoBw5P13AjVxCLAr_gFIDaWi3z7voxgYAircuUDLHZRm_GhgKBm2pmB3V39RLjOSv4uBjISxWzuA0R86AVtUAMzmp4wd7iQNSWWHU4JOBw4E7Ai2XbDv-v_NBjCZE7bQwbxleqHniHph6aU1mETeAPgFD7Gr1xl473UE9xrr32boGhT8ygXhAcG4rgE7ExLucMEG_TBqgeta8mSkuu0dSTnucFjs2xE"/>
+<div class="absolute inset-0 map-gradient pointer-events-none"></div>
+<!-- Custom Staff Markers -->
+<!-- Marker 1 (Critical) -->
+<div class="absolute top-[35%] left-[45%] flex flex-col items-center">
+<div class="bg-error text-on-error p-1 rounded-full shadow-md animate-pulse border-2 border-white">
+<span class="material-symbols-outlined text-sm" data-icon="emergency" style="font-variation-settings: 'FILL' 1;">emergency</span>
+</div>
+<div class="bg-white/90 backdrop-blur-sm px-2 py-0.5 rounded-lg border border-outline-variant mt-1">
+<span class="font-label-numeric text-[10px] text-on-surface">D. Evans</span>
+</div>
+</div>
+<!-- Marker 2 (Active) -->
+<div class="absolute top-[55%] left-[60%] flex flex-col items-center">
+<div class="bg-primary text-on-primary p-1 rounded-full shadow-md border-2 border-white">
+<span class="material-symbols-outlined text-sm" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+</div>
+<div class="bg-white/90 backdrop-blur-sm px-2 py-0.5 rounded-lg border border-outline-variant mt-1">
+<span class="font-label-numeric text-[10px] text-on-surface">S. Williams</span>
+</div>
+</div>
+<!-- Marker 3 (Active) -->
+<div class="absolute top-[48%] left-[25%] flex flex-col items-center">
+<div class="bg-primary text-on-primary p-1 rounded-full shadow-md border-2 border-white">
+<span class="material-symbols-outlined text-sm" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+</div>
+<div class="bg-white/90 backdrop-blur-sm px-2 py-0.5 rounded-lg border border-outline-variant mt-1">
+<span class="font-label-numeric text-[10px] text-on-surface">G. Roberts</span>
+</div>
+</div>
+</div>
+<!-- Map Controls -->
+<div class="absolute bottom-40 right-margin-mobile flex flex-col gap-2 z-30">
+<button class="w-12 h-12 bg-white rounded-xl shadow-md flex items-center justify-center border border-outline-variant active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-primary" data-icon="add">add</span>
+</button>
+<button class="w-12 h-12 bg-white rounded-xl shadow-md flex items-center justify-center border border-outline-variant active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-primary" data-icon="remove">remove</span>
+</button>
+<button class="w-12 h-12 bg-primary text-white rounded-xl shadow-md flex items-center justify-center mt-2 active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="my_location" style="font-variation-settings: 'FILL' 1;">my_location</span>
+</button>
+</div>
+<!-- Bottom Sheet (Expandable Active Journeys) -->
+<div class="fixed inset-x-0 bottom-16 z-40 bottom-sheet-transition transform translate-y-[65%]" id="bottomSheet">
+<div class="mx-margin-mobile bg-white rounded-t-3xl shadow-2xl border border-outline-variant overflow-hidden max-h-[707px] flex flex-col">
+<!-- Handle -->
+<div class="w-full flex justify-center py-3 cursor-pointer" onclick="toggleSheet()">
+<div class="w-10 h-1 bg-outline-variant rounded-full"></div>
+</div>
+<div class="px-5 pb-4 flex justify-between items-end">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Active Journeys</h2>
+<p class="font-body-sm text-on-surface-variant">3 Staff en route</p>
+</div>
+<span class="material-symbols-outlined text-primary" data-icon="filter_list">filter_list</span>
+</div>
+<div class="overflow-y-auto px-margin-mobile pb-6 space-y-3">
+<!-- Journey Row 1 -->
+<div class="bg-surface p-4 rounded-xl border border-outline-variant flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden flex-shrink-0 bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Close-up professional portrait of a male nurse wearing clinical blue scrubs, smiling warmly against a bright hospital corridor background. High-key lighting emphasizes clean clinical precision and professionalism." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBeKRU6ppj6mZ9deWlNhi3c0qB8lw4gq91pFbnoviKAy_s6xc-sNqdP2iO3CAFTABAafyAmlwteTRKd808dx1I2XJK94XX1z9M3CZO8QalSKd5dl1frfDhF1HJWfaTN8a8DPnb19CWYOKLg-bhG6G000qJyFTPTQ-zpxaM6TN7lnMY0LhHa5hP5SdHQIW-pjBybjPzRAvbajjtafXLcFs05c9Kh056YtXtGk9Sk2AsDMBiy2WGeWaUbUf6xceVpZQ7uurH4EdEMKT4"/>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<h3 class="font-body-lg font-bold">David Evans</h3>
+<span class="bg-error-container text-on-error-container px-2 py-0.5 rounded-full font-label-caps text-[10px]">ACTION REQ</span>
+</div>
+<div class="flex items-center gap-2 mt-1">
+<span class="font-label-numeric text-on-surface-variant">ETA: N/A</span>
+<span class="text-outline text-xs">•</span>
+<span class="font-body-sm text-error">Shift Canceled</span>
+</div>
+</div>
+</div>
+<!-- Journey Row 2 -->
+<div class="bg-white p-4 rounded-xl border border-outline-variant flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden flex-shrink-0 bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Professional portrait of a female healthcare manager wearing a white clinical coat, looking confident and focused. The lighting is soft and neutral, capturing a modern medical office setting with blue accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCx9P1yQgtIFPlRC7Y5muol9rXSwB50hYj3eYKyIr6BYenOR_p-yeh-EmsuNyH_sVa7wapq3MRby4LwwdOeUohGzVnB1CF80Vrbee8b6HUTxmC3mO8QP9BUVK41RAPp9p6b7wAEG9O4b1onBuUKEivIyt29Or8NbDZ3BNQSMyWpYF479HU3qrGuR2VbaDYt46eJPt0jyeWWHo0HK-tyDU97OUNFJuDg18E1MakRi3xJFYr5U1NfPzZMjrtWh_04F9AF1iOjOlDlWeU"/>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<h3 class="font-body-lg font-bold">Sarah Williams</h3>
+<span class="bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded-full font-label-caps text-[10px]">ON-TIME</span>
+</div>
+<div class="flex items-center gap-2 mt-1">
+<span class="font-label-numeric text-on-surface-variant">ETA: 14:15</span>
+<span class="text-outline text-xs">•</span>
+<span class="font-body-sm text-on-surface-variant">Glan Clwyd Hospital</span>
+</div>
+</div>
+</div>
+<!-- Journey Row 3 -->
+<div class="bg-white p-4 rounded-xl border border-outline-variant flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden flex-shrink-0 bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Middle-aged male doctor with glasses and stethoscope, looking professional and calm. The aesthetic is bright and sterile, typical of a modern healthcare environment with soft blue and white tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHryCoYxarNLiiTz6YH8FhF9EPaAYlBjOe_7b2NrIjkwBkQDw421fsp0HFwO1xnOWVXEBTYideqci9rOh22jvwEhVf3GeyNBgNlEWQxSjpt7gZDCZ4rs4_b5enFd6bCP5tJMDy6dkWWpdNAP4QXwoDeUJACisDCyjwWBt7VlpKgykSm8dEgi3WzEzVcJsA0F1Vw_Ea_0f5WLYzO5I3Q4TM6-l4SFbQqIjOg53SABPAB1kROSDHRsp3wTAtJ7FHZ3ipemjf1xFwRf8"/>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<h3 class="font-body-lg font-bold">Gareth Roberts</h3>
+<span class="bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded-full font-label-caps text-[10px]">ON-TIME</span>
+</div>
+<div class="flex items-center gap-2 mt-1">
+<span class="font-label-numeric text-on-surface-variant">ETA: 14:32</span>
+<span class="text-outline text-xs">•</span>
+<span class="font-body-sm text-on-surface-variant">Wrexham Maelor</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Shell (Shared Component: BottomNavBar) -->
+<nav class="fixed bottom-0 w-full z-50 bg-surface dark:bg-on-surface border-t border-outline-variant dark:border-outline flex justify-around items-center h-16 w-full px-2 shadow-sm transition-all duration-300">
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-surface-container-low transition-colors scale-95 active:transition-transform">
+<span class="material-symbols-outlined" data-icon="map" style="font-variation-settings: 'FILL' 1;">map</span>
+<span class="font-label-caps text-label-caps">Map</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-full px-4 py-1 transition-colors scale-95 active:transition-transform">
+<span class="material-symbols-outlined" data-icon="assignment">assignment</span>
+<span class="font-label-caps text-label-caps">Shifts</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-surface-container-low transition-colors scale-95 active:transition-transform">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-label-caps text-label-caps">Staff</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-surface-container-low transition-colors scale-95 active:transition-transform">
+<div class="relative">
+<span class="material-symbols-outlined" data-icon="emergency">emergency</span>
+<span class="absolute -top-1 -right-1 w-2 h-2 bg-error rounded-full"></span>
+</div>
+<span class="font-label-caps text-label-caps">Alerts</span>
+</div>
+</nav>
+<script>
+        let isExpanded = false;
+        function toggleSheet() {
+            const sheet = document.getElementById('bottomSheet');
+            if (isExpanded) {
+                sheet.style.transform = 'translateY(65%)';
+            } else {
+                sheet.style.transform = 'translateY(0%)';
+            }
+            isExpanded = !isExpanded;
+        }
+
+        // Add some basic touch interaction to markers
+        document.querySelectorAll('.absolute.flex-col.items-center').forEach(marker => {
+            marker.addEventListener('click', () => {
+                alert('Staff Detail: ' + marker.querySelector('span.font-label-numeric').innerText);
+            });
+        });
+    </script>
+</body></html>

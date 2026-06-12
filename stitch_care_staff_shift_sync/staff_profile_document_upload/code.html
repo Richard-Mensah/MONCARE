@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>StaffGuard Precision - Staff Profile &amp; Document Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-container": "#fcfcff",
+                        "primary-fixed": "#c8e6ff",
+                        "secondary-fixed-dim": "#72d2ff",
+                        "error": "#ba1a1a",
+                        "tertiary": "#006952",
+                        "on-secondary-fixed-variant": "#004d66",
+                        "surface-variant": "#e0e3e5",
+                        "status-confirmed": "#1CBF99",
+                        "inverse-on-surface": "#eff1f3",
+                        "outline-variant": "#bec8d1",
+                        "inverse-primary": "#88ceff",
+                        "tertiary-fixed-dim": "#4cddb5",
+                        "tertiary-fixed": "#6efad1",
+                        "surface": "#f7f9fb",
+                        "on-tertiary-fixed": "#002118",
+                        "surface-container-high": "#e6e8ea",
+                        "error-container": "#ffdad6",
+                        "on-secondary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "border-light": "#E2E8F0",
+                        "surface-tint": "#006590",
+                        "secondary": "#006687",
+                        "on-secondary-container": "#005571",
+                        "text-main": "#222222",
+                        "outline": "#6f7881",
+                        "on-error": "#ffffff",
+                        "background": "#f7f9fb",
+                        "on-tertiary-container": "#f5fff9",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed-variant": "#004c6e",
+                        "on-tertiary-fixed-variant": "#00513f",
+                        "surface-dim": "#d8dadc",
+                        "inverse-surface": "#2d3133",
+                        "on-background": "#191c1e",
+                        "on-surface-variant": "#3f484f",
+                        "status-pending": "#F59E0B",
+                        "text-secondary": "#64748B",
+                        "primary": "#00628d",
+                        "primary-fixed-dim": "#88ceff",
+                        "on-secondary-fixed": "#001e2b",
+                        "secondary-fixed": "#c1e8ff",
+                        "on-surface": "#191c1e",
+                        "tertiary-container": "#008469",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-bright": "#f7f9fb",
+                        "status-canceled": "#EF4444",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed": "#001e2f",
+                        "surface-container": "#eceef0",
+                        "surface-container-low": "#f2f4f6",
+                        "secondary-container": "#5ccdff",
+                        "surface-container-highest": "#e0e3e5",
+                        "primary-container": "#007cb1"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "stack-lg": "32px",
+                        "stack-md": "16px",
+                        "gutter-md": "24px",
+                        "stack-sm": "8px",
+                        "unit": "4px",
+                        "margin-page": "32px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Hanken Grotesk"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "body-md": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "data-tabular": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "data-tabular": ["15px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Hanken Grotesk', sans-serif; background-color: #f7f9fb; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(226, 232, 240, 0.5);
+        }
+    </style>
+</head>
+<body class="text-on-surface">
+<!-- Sidebar Component Mapping -->
+<aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-low border-r border-border-light flex flex-col p-stack-md z-40 hidden md:flex">
+<div class="mb-stack-lg">
+<h1 class="font-headline-md text-headline-md font-bold text-on-surface">HealthCentral</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Staffing Portal</p>
+</div>
+<nav class="flex-1 space-y-unit">
+<a class="flex items-center gap-stack-sm px-stack-sm py-stack-sm text-on-surface-variant hover:bg-surface-container-high transition-all rounded-xl duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-sm text-label-sm">Dashboard</span>
+</a>
+<a class="flex items-center gap-stack-sm px-stack-sm py-stack-sm text-on-surface-variant hover:bg-surface-container-high transition-all rounded-xl duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_month">calendar_month</span>
+<span class="font-label-sm text-label-sm">Shifts</span>
+</a>
+<a class="flex items-center gap-stack-sm px-stack-sm py-stack-sm bg-secondary-container text-on-secondary-container font-bold rounded-xl transition-all duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="group" style="font-variation-settings: 'FILL' 1;">group</span>
+<span class="font-label-sm text-label-sm">Staff List</span>
+</a>
+<a class="flex items-center gap-stack-sm px-stack-sm py-stack-sm text-on-surface-variant hover:bg-surface-container-high transition-all rounded-xl duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-sm text-label-sm">Settings</span>
+</a>
+</nav>
+<button class="mb-stack-lg w-full py-stack-sm bg-primary text-on-primary rounded-xl font-label-sm text-label-sm active:scale-95 duration-150">
+            Post New Shift
+        </button>
+<div class="space-y-unit border-t border-border-light pt-stack-md">
+<a class="flex items-center gap-stack-sm px-stack-sm py-stack-sm text-on-surface-variant hover:bg-surface-container-high transition-all rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="contact_support">contact_support</span>
+<span class="font-label-sm text-label-sm">Support</span>
+</a>
+<a class="flex items-center gap-stack-sm px-stack-sm py-stack-sm text-on-surface-variant hover:bg-surface-container-high transition-all rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-label-sm text-label-sm">Sign Out</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="md:ml-64 min-h-screen">
+<!-- TopNavBar Component Mapping -->
+<header class="w-full h-16 bg-surface-container-lowest border-b border-border-light flex justify-between items-center px-margin-page sticky top-0 z-30">
+<div class="flex items-center gap-stack-md">
+<span class="font-headline-md text-headline-md font-bold text-primary">StaffGuard Precision</span>
+<div class="hidden md:flex h-8 w-64 bg-surface-container-low rounded-lg px-stack-sm items-center gap-stack-sm">
+<span class="material-symbols-outlined text-outline" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md w-full p-0 placeholder:text-outline-variant" placeholder="Search staff, shifts, or IDs..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-stack-md">
+<button class="material-symbols-outlined text-primary cursor-pointer hover:bg-surface-container-low p-2 rounded-full transition-colors" data-icon="notifications">notifications</button>
+<button class="material-symbols-outlined text-primary cursor-pointer hover:bg-surface-container-low p-2 rounded-full transition-colors" data-icon="help">help</button>
+<div class="h-10 w-10 rounded-full bg-secondary-container flex items-center justify-center border-2 border-primary-fixed overflow-hidden">
+<img alt="Administrator Profile" class="w-full h-full object-cover" data-alt="A professional headshot of a healthcare administrator, a woman in her late 40s with a warm smile, wearing a modern white lab coat over a professional blue blouse. The lighting is bright and clinically clean, with a softly blurred background of a high-tech medical office. The overall style is clean, corporate, and highly professional to match the clinical design system." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtsyrGNEw3xqM_Y9pc0hb3OfrIMDsIQpZJyOwhgY9GMx6I5uKtlSz-CVqnr6MaJMDNX4BWNxUZDc1dC2gVV4Aygv9kSyCbsIMYQVO85P_QH6a8W2L1oe-AdfTQgXVrKhQ5p6bYgdhegJkYfdBl-uUDmfMzm7ItGiv_nOjtAaL1McoEykzqCo-fZcJ2yOtk53_qtcfwsB0bREFkHIo9x1T3i-juAcWMCk77fR5grhtpVa_rSdY2acvGJRol_DA41JkD4LvP6_PJ9Lc"/>
+</div>
+</div>
+</header>
+<!-- Profile Detail View Content -->
+<div class="p-margin-page space-y-gutter-md">
+<!-- Breadcrumbs -->
+<nav class="flex items-center gap-stack-sm text-text-secondary font-label-sm text-label-sm mb-stack-sm">
+<a class="hover:text-primary" href="#">Staff Directory</a>
+<span class="material-symbols-outlined text-[16px]" data-icon="chevron_right">chevron_right</span>
+<span class="text-on-surface">Emma Jones</span>
+</nav>
+<!-- 1. Header & Profile Summary -->
+<section class="bg-surface-container-lowest border border-border-light rounded-xl overflow-hidden shadow-sm">
+<div class="p-stack-lg flex flex-col md:flex-row gap-gutter-md items-start md:items-center relative overflow-hidden">
+<!-- Subtle decorative background element -->
+<div class="absolute -right-16 -top-16 w-64 h-64 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
+<div class="relative group">
+<img alt="Emma Jones - Nurse Profile" class="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-surface-container-low shadow-md" data-alt="Close-up portrait of Emma Jones, a friendly female nurse in her 30s wearing a blue scrub top. She is smiling confidently in a modern hospital setting with bright, natural lighting that emphasizes professional trustworthiness. The background is softly out of focus, showing a clean medical environment. The visual style is crisp, high-definition, and follows a clinical modern aesthetic." src="https://lh3.googleusercontent.com/aida/AP1WRLtzyRX5BcRbnr3hdA1jsZmL-O9tkHpwPwFh39uj7wHefT4mVhs5YeX5g-qesVsn_23qCQo3ilMgstlaMKYnUlRXLJJNX2Dk29IvdP0ahH_Zg4b3B7t4u3Fw-gZ7X4TAb9aZAOGI4h6o0gkI7QCVEBVYB02NqPUne6O9z8I_S2_-7XSrcENTqlIdcakKH0u-bMd_jHalFaiyHjKa7BrZrYYuKAcWamsr480Kf17jV4N75Kb0KNZL1qP7Lw"/>
+<button class="absolute bottom-1 right-1 bg-primary text-on-primary p-2 rounded-full shadow-lg hover:scale-105 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[18px]" data-icon="photo_camera">photo_camera</span>
+</button>
+</div>
+<div class="flex-1 space-y-stack-sm">
+<div class="flex flex-wrap items-center gap-stack-md">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Emma Jones</h2>
+<span class="px-stack-sm py-unit bg-status-confirmed/10 text-status-confirmed border border-status-confirmed/30 rounded-lg font-label-sm text-label-sm flex items-center gap-unit">
+<span class="material-symbols-outlined text-[16px]" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+                                Compliant
+                            </span>
+</div>
+<div class="flex flex-wrap gap-gutter-md text-text-secondary font-body-md text-body-md">
+<div class="flex items-center gap-unit">
+<span class="material-symbols-outlined text-[20px]" data-icon="medical_services">medical_services</span>
+<span>Senior Nurse (RGN)</span>
+</div>
+<div class="flex items-center gap-unit">
+<span class="material-symbols-outlined text-[20px]" data-icon="location_on">location_on</span>
+<span>Rhyl, North Wales</span>
+</div>
+<div class="flex items-center gap-unit">
+<span class="material-symbols-outlined text-[20px]" data-icon="badge">badge</span>
+<span>ID: SG-20491</span>
+</div>
+</div>
+<div class="flex gap-stack-sm pt-stack-sm">
+<button class="px-stack-md py-stack-sm bg-primary text-on-primary rounded-xl font-label-sm text-label-sm flex items-center gap-unit hover:opacity-90 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[18px]" data-icon="mail">mail</span>
+                                Send Message
+                            </button>
+<button class="px-stack-md py-stack-sm border border-outline-variant text-on-surface-variant rounded-xl font-label-sm text-label-sm flex items-center gap-unit hover:bg-surface-container-low active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[18px]" data-icon="assignment_ind">assignment_ind</span>
+                                View Shifts
+                            </button>
+</div>
+</div>
+<!-- Quick Stats Grid -->
+<div class="grid grid-cols-2 gap-stack-sm w-full md:w-auto">
+<div class="bg-surface-container-low p-stack-sm rounded-xl text-center border border-border-light">
+<p class="font-label-sm text-label-sm text-text-secondary">Expiring Soon</p>
+<p class="font-headline-md text-headline-md text-status-pending">1</p>
+</div>
+<div class="bg-surface-container-low p-stack-sm rounded-xl text-center border border-border-light">
+<p class="font-label-sm text-label-sm text-text-secondary">Total Docs</p>
+<p class="font-headline-md text-headline-md text-primary">12</p>
+</div>
+</div>
+</div>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-md">
+<!-- Left Column: Personal Information -->
+<div class="lg:col-span-4 space-y-gutter-md">
+<section class="bg-surface-container-lowest border border-border-light rounded-xl p-stack-lg space-y-stack-lg shadow-sm">
+<div class="flex justify-between items-center border-b border-border-light pb-stack-sm">
+<h3 class="font-headline-md text-[20px] font-bold text-on-surface">Personal Information</h3>
+<button class="text-primary font-label-sm text-label-sm hover:underline">Edit</button>
+</div>
+<div class="space-y-stack-md">
+<div>
+<label class="block font-label-sm text-label-sm text-text-secondary mb-unit">Email Address</label>
+<p class="font-body-md text-body-md text-on-surface">e.jones@healthcentral.co.uk</p>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-text-secondary mb-unit">Phone Number</label>
+<p class="font-body-md text-body-md text-on-surface">+44 7700 900 123</p>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-text-secondary mb-unit">Home Address</label>
+<p class="font-body-md text-body-md text-on-surface">14 Promenade Way, Rhyl, LL18 3AB</p>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-text-secondary mb-unit">Employment Type</label>
+<p class="font-body-md text-body-md text-on-surface">Permanent Part-Time</p>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-text-secondary mb-unit">Join Date</label>
+<p class="font-body-md text-body-md text-on-surface">March 12, 2022</p>
+</div>
+</div>
+<div class="pt-stack-md border-t border-border-light">
+<h4 class="font-label-sm text-label-sm text-text-secondary mb-stack-sm">Linked Emergency Contact</h4>
+<div class="flex items-center gap-stack-sm bg-surface-container-low p-stack-sm rounded-lg border border-border-light">
+<div class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center text-primary font-bold">MJ</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface">Mark Jones</p>
+<p class="text-[12px] text-text-secondary">Husband • 07700 900 456</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Compliance Summary Card -->
+<section class="bg-primary-container p-stack-lg rounded-xl text-on-primary-container shadow-md">
+<div class="flex items-center gap-stack-sm mb-stack-md">
+<span class="material-symbols-outlined" data-icon="verified_user">verified_user</span>
+<h3 class="font-headline-md text-[20px] font-bold">Compliance Score</h3>
+</div>
+<div class="flex items-end gap-stack-sm mb-stack-sm">
+<span class="text-4xl font-bold">94%</span>
+<span class="text-primary-fixed mb-unit">+2% from last month</span>
+</div>
+<div class="w-full bg-primary-fixed/30 h-2 rounded-full overflow-hidden">
+<div class="bg-secondary-fixed-dim h-full w-[94%]"></div>
+</div>
+<p class="mt-stack-md text-sm text-primary-fixed">Excellent performance. Keep the professional registration updated to reach 100%.</p>
+</section>
+</div>
+<!-- Right Column: Document Management & History -->
+<div class="lg:col-span-8 space-y-gutter-md">
+<!-- 3. Document Management Center -->
+<section class="bg-surface-container-lowest border border-border-light rounded-xl shadow-sm overflow-hidden">
+<div class="p-stack-lg border-b border-border-light flex flex-col md:flex-row justify-between md:items-center gap-stack-md">
+<div>
+<h3 class="font-headline-md text-[20px] font-bold text-on-surface">Required Documents</h3>
+<p class="font-body-md text-body-md text-text-secondary">Manage and verify professional certifications.</p>
+</div>
+<div class="flex gap-stack-sm">
+<button class="px-stack-md py-stack-sm bg-surface-container-low text-on-surface border border-outline-variant rounded-xl font-label-sm text-label-sm hover:bg-surface-container-high transition-colors">
+                                    Export All
+                                </button>
+<button class="px-stack-md py-stack-sm bg-primary text-on-primary rounded-xl font-label-sm text-label-sm flex items-center gap-unit shadow-sm hover:opacity-90 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
+                                    Add Custom Doc
+                                </button>
+</div>
+</div>
+<!-- Drag and Drop Area -->
+<div class="m-stack-lg border-2 border-dashed border-outline-variant rounded-xl bg-surface-container-low p-stack-lg flex flex-col items-center justify-center text-center group cursor-pointer hover:border-primary transition-colors">
+<div class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm mb-stack-sm group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined" data-icon="upload_file">upload_file</span>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface">Click to upload or drag and drop</p>
+<p class="text-[12px] text-text-secondary">PDF, JPG or PNG (max. 10MB)</p>
+</div>
+<!-- Document List -->
+<div class="px-stack-lg pb-stack-lg">
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="text-text-secondary font-label-sm text-label-sm border-b border-border-light">
+<th class="py-stack-sm font-medium">Document Name</th>
+<th class="py-stack-sm font-medium">Status</th>
+<th class="py-stack-sm font-medium">Expiry Date</th>
+<th class="py-stack-sm font-medium text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md">
+<!-- DBS Certificate -->
+<tr class="border-b border-border-light/50 hover:bg-surface-container-low/50 transition-colors">
+<td class="py-stack-md">
+<div class="flex items-center gap-stack-sm">
+<div class="w-8 h-8 rounded bg-primary-container/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]" data-icon="description">description</span>
+</div>
+<span class="font-medium">Enhanced DBS Certificate</span>
+</div>
+</td>
+<td class="py-stack-md">
+<span class="px-unit py-0.5 bg-status-confirmed/10 text-status-confirmed text-[12px] font-bold rounded uppercase tracking-wider">Valid</span>
+</td>
+<td class="py-stack-md font-data-tabular text-data-tabular">15 Jun 2026</td>
+<td class="py-stack-md text-right">
+<div class="flex justify-end gap-stack-sm">
+<button class="p-1 hover:text-primary transition-colors" title="Download"><span class="material-symbols-outlined text-[20px]" data-icon="download">download</span></button>
+<button class="p-1 hover:text-primary transition-colors" title="Upload Replacement"><span class="material-symbols-outlined text-[20px]" data-icon="upload">upload</span></button>
+</div>
+</td>
+</tr>
+<!-- Right to Work -->
+<tr class="border-b border-border-light/50 hover:bg-surface-container-low/50 transition-colors">
+<td class="py-stack-md">
+<div class="flex items-center gap-stack-sm">
+<div class="w-8 h-8 rounded bg-primary-container/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]" data-icon="public">public</span>
+</div>
+<span class="font-medium">Right to Work (Passport)</span>
+</div>
+</td>
+<td class="py-stack-md">
+<span class="px-unit py-0.5 bg-status-confirmed/10 text-status-confirmed text-[12px] font-bold rounded uppercase tracking-wider">Valid</span>
+</td>
+<td class="py-stack-md font-data-tabular text-data-tabular">Indefinite</td>
+<td class="py-stack-md text-right">
+<div class="flex justify-end gap-stack-sm">
+<button class="p-1 hover:text-primary transition-colors" title="Download"><span class="material-symbols-outlined text-[20px]" data-icon="download">download</span></button>
+<button class="p-1 hover:text-primary transition-colors" title="Upload Replacement"><span class="material-symbols-outlined text-[20px]" data-icon="upload">upload</span></button>
+</div>
+</td>
+</tr>
+<!-- Mandatory Training -->
+<tr class="border-b border-border-light/50 hover:bg-surface-container-low/50 transition-colors">
+<td class="py-stack-md">
+<div class="flex items-center gap-stack-sm">
+<div class="w-8 h-8 rounded bg-status-pending/10 flex items-center justify-center text-status-pending">
+<span class="material-symbols-outlined text-[18px]" data-icon="school">school</span>
+</div>
+<span class="font-medium">Mandatory Training Suite</span>
+</div>
+</td>
+<td class="py-stack-md">
+<span class="px-unit py-0.5 bg-status-pending/10 text-status-pending text-[12px] font-bold rounded uppercase tracking-wider">Under Review</span>
+</td>
+<td class="py-stack-md font-data-tabular text-data-tabular">01 Dec 2024</td>
+<td class="py-stack-md text-right">
+<div class="flex justify-end gap-stack-sm">
+<button class="p-1 hover:text-primary transition-colors" title="View Submission"><span class="material-symbols-outlined text-[20px]" data-icon="visibility">visibility</span></button>
+<button class="p-1 hover:text-primary transition-colors" title="Upload Replacement"><span class="material-symbols-outlined text-[20px]" data-icon="upload">upload</span></button>
+</div>
+</td>
+</tr>
+<!-- NMC Registration -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-stack-md">
+<div class="flex items-center gap-stack-sm">
+<div class="w-8 h-8 rounded bg-status-canceled/10 flex items-center justify-center text-status-canceled">
+<span class="material-symbols-outlined text-[18px]" data-icon="health_and_safety">health_and_safety</span>
+</div>
+<span class="font-medium">NMC Professional Registration</span>
+</div>
+</td>
+<td class="py-stack-md">
+<span class="px-unit py-0.5 bg-status-canceled/10 text-status-canceled text-[12px] font-bold rounded uppercase tracking-wider">Expiring Soon</span>
+</td>
+<td class="py-stack-md font-data-tabular text-data-tabular text-status-canceled font-bold">14 Oct 2024</td>
+<td class="py-stack-md text-right">
+<div class="flex justify-end gap-stack-sm">
+<button class="p-1 hover:text-primary transition-colors" title="Download"><span class="material-symbols-outlined text-[20px]" data-icon="download">download</span></button>
+<button class="px-stack-sm py-unit bg-primary text-on-primary rounded text-[12px] font-bold hover:bg-primary-container transition-colors">Renew</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- 4. Compliance History -->
+<section class="bg-surface-container-lowest border border-border-light rounded-xl p-stack-lg shadow-sm">
+<div class="flex justify-between items-center mb-stack-lg">
+<h3 class="font-headline-md text-[20px] font-bold text-on-surface">Verification Log</h3>
+<button class="text-primary font-label-sm text-label-sm hover:underline">View Full Audit Trail</button>
+</div>
+<div class="relative space-y-stack-lg before:content-[''] before:absolute before:left-[11px] before:top-2 before:bottom-2 before:w-[2px] before:bg-surface-container-low">
+<!-- Timeline Item 1 -->
+<div class="relative pl-gutter-md">
+<div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-status-confirmed flex items-center justify-center text-white border-4 border-surface-container-lowest">
+<span class="material-symbols-outlined text-[12px]" data-icon="check" style="font-variation-settings: 'wght' 700;">check</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface">DBS Certificate Verified</p>
+<p class="font-body-md text-[14px] text-text-secondary">Verified by Sarah Miller (Admin) • Sep 12, 2024 at 14:22</p>
+<div class="mt-unit flex items-center gap-unit text-primary text-[12px] font-medium">
+<span class="material-symbols-outlined text-[14px]" data-icon="attach_file">attach_file</span>
+                                        DBS_EmmaJones_2024.pdf
+                                    </div>
+</div>
+</div>
+<!-- Timeline Item 2 -->
+<div class="relative pl-gutter-md">
+<div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-primary-container flex items-center justify-center text-white border-4 border-surface-container-lowest">
+<span class="material-symbols-outlined text-[12px]" data-icon="upload" style="font-variation-settings: 'wght' 700;">upload</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface">New Training Module Uploaded</p>
+<p class="font-body-md text-[14px] text-text-secondary">Uploaded by Emma Jones • Sep 10, 2024 at 09:15</p>
+<p class="mt-unit text-[13px] italic text-text-secondary">"Uploading my updated Life Support certification for review."</p>
+</div>
+</div>
+<!-- Timeline Item 3 -->
+<div class="relative pl-gutter-md">
+<div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-status-pending flex items-center justify-center text-white border-4 border-surface-container-lowest">
+<span class="material-symbols-outlined text-[12px]" data-icon="priority_high" style="font-variation-settings: 'wght' 700;">priority_high</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface">Profile Re-verification Requested</p>
+<p class="font-body-md text-[14px] text-text-secondary">System Alert • Aug 28, 2024 at 00:01</p>
+<p class="mt-unit text-[13px] text-status-pending font-medium">Auto-trigger: Professional registration expiring in 45 days.</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+</div>
+<!-- 5. Action Bar (Sticky Footer) -->
+<footer class="sticky bottom-0 w-full bg-surface-container-lowest border-t border-border-light p-stack-md flex flex-wrap justify-between items-center gap-stack-md z-30 shadow-[0_-4px_20px_-10px_rgba(0,0,0,0.1)]">
+<div class="flex items-center gap-stack-sm text-text-secondary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-status-confirmed" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                All mandatory fields completed
+                <span class="mx-unit text-outline-variant">|</span>
+                Last saved 4 minutes ago
+            </div>
+<div class="flex items-center gap-stack-sm">
+<button class="px-stack-lg py-stack-sm text-on-surface-variant font-label-sm text-label-sm hover:bg-surface-container-low rounded-xl transition-all">
+                    Discard Changes
+                </button>
+<button class="px-stack-lg py-stack-sm border border-primary text-primary font-label-sm text-label-sm rounded-xl hover:bg-primary-container/10 transition-all">
+                    Request Updates
+                </button>
+<button class="px-stack-lg py-stack-sm bg-primary text-on-primary font-label-sm text-label-sm rounded-xl shadow-md hover:shadow-lg active:scale-95 transition-all flex items-center gap-unit">
+<span class="material-symbols-outlined text-[18px]" data-icon="task_alt">task_alt</span>
+                    Verify Profile
+                </button>
+</div>
+</footer>
+</main>
+<!-- Mobile Nav Bar (Visible on small screens) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full bg-surface-container-lowest border-t border-border-light h-16 flex items-center justify-around z-50">
+<button class="flex flex-col items-center justify-center text-on-surface-variant gap-unit">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-[10px] font-label-sm uppercase">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-primary gap-unit">
+<span class="material-symbols-outlined" data-icon="group" style="font-variation-settings: 'FILL' 1;">group</span>
+<span class="text-[10px] font-label-sm uppercase">Staff</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant gap-unit">
+<span class="material-symbols-outlined" data-icon="calendar_month">calendar_month</span>
+<span class="text-[10px] font-label-sm uppercase">Shifts</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant gap-unit">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="text-[10px] font-label-sm uppercase">Settings</span>
+</button>
+</nav>
+<script>
+        // Simple interactivity for demonstration
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const ripple = document.createElement('span');
+                ripple.classList.add('ripple');
+                btn.appendChild(ripple);
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+    </script>
+</body></html>

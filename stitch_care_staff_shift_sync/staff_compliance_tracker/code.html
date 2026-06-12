@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Moncare | CompliancePro Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary": "#006952",
+                      "surface-container-highest": "#e0e3e5",
+                      "inverse-primary": "#88ceff",
+                      "surface-container-high": "#e6e8ea",
+                      "primary-fixed-dim": "#88ceff",
+                      "surface-dim": "#d8dadc",
+                      "outline": "#6f7881",
+                      "tertiary-fixed-dim": "#4cddb5",
+                      "on-primary-fixed-variant": "#004c6e",
+                      "secondary-container": "#5ccdff",
+                      "primary-container": "#007cb1",
+                      "on-error-container": "#93000a",
+                      "border-light": "#E2E8F0",
+                      "status-canceled": "#EF4444",
+                      "background": "#f7f9fb",
+                      "on-tertiary-fixed": "#002118",
+                      "on-surface": "#191c1e",
+                      "primary": "#00628d",
+                      "status-pending": "#F59E0B",
+                      "inverse-on-surface": "#eff1f3",
+                      "surface-variant": "#e0e3e5",
+                      "surface-tint": "#006590",
+                      "on-secondary-container": "#005571",
+                      "on-secondary-fixed": "#001e2b",
+                      "primary-fixed": "#c8e6ff",
+                      "tertiary-container": "#008469",
+                      "status-confirmed": "#1CBF99",
+                      "error-container": "#ffdad6",
+                      "inverse-surface": "#2d3133",
+                      "secondary": "#006687",
+                      "secondary-fixed": "#c1e8ff",
+                      "on-primary-container": "#fcfcff",
+                      "on-secondary": "#ffffff",
+                      "error": "#ba1a1a",
+                      "on-primary-fixed": "#001e2f",
+                      "surface-bright": "#f7f9fb",
+                      "text-secondary": "#64748B",
+                      "surface": "#f7f9fb",
+                      "secondary-fixed-dim": "#72d2ff",
+                      "on-tertiary-fixed-variant": "#00513f",
+                      "surface-container-low": "#f2f4f6",
+                      "surface-container": "#eceef0",
+                      "on-error": "#ffffff",
+                      "tertiary-fixed": "#6efad1",
+                      "surface-container-lowest": "#ffffff",
+                      "on-surface-variant": "#3f484f",
+                      "on-tertiary": "#ffffff",
+                      "on-background": "#191c1e",
+                      "text-main": "#222222",
+                      "on-primary": "#ffffff",
+                      "on-tertiary-container": "#f5fff9",
+                      "on-secondary-fixed-variant": "#004d66",
+                      "outline-variant": "#bec8d1"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "margin-page": "32px",
+                      "gutter-md": "24px",
+                      "stack-lg": "32px",
+                      "stack-sm": "8px",
+                      "unit": "4px",
+                      "stack-md": "16px"
+              },
+              "fontFamily": {
+                      "headline-lg": ["Hanken Grotesk"],
+                      "body-md": ["Hanken Grotesk"],
+                      "body-lg": ["Hanken Grotesk"],
+                      "headline-md": ["Hanken Grotesk"],
+                      "label-sm": ["Hanken Grotesk"],
+                      "headline-lg-mobile": ["Hanken Grotesk"],
+                      "data-tabular": ["Hanken Grotesk"]
+              },
+              "fontSize": {
+                      "headline-lg": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "label-sm": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "headline-lg-mobile": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                      "data-tabular": ["15px", {"lineHeight": "20px", "fontWeight": "500"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        body {
+            background-color: #f7f9fb;
+            font-family: 'Hanken Grotesk', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="text-on-surface bg-background">
+<!-- SideNavBar (Predicted Component) -->
+<aside class="fixed left-0 top-0 h-full flex flex-col w-64 border-r border-border-light bg-surface-container-lowest dark:bg-inverse-surface z-50">
+<div class="p-6">
+<img alt="Moncare Logo" class="h-10 mb-8 object-contain" src="https://lh3.googleusercontent.com/aida/AP1WRLupldVrTtvglewbRgqlrC2TL1OE8dlQ4nvJiPOxn7XxUJg3yjxI0EZqC9CxWOMTtc0BmMHp5SftDY03B1YqC8W9jLLGUmLprB1I384T4OLki3muKtsSdKa6FVA9k_JTCUtcK0Oj7FxeQi_TTYdMxHtgq2DkxeY73ZnPm_2E0svfx4nTScC73mbV5xF3MPfCx1enmIVVHACcvHmnwG3fK6iYWf6NUVtmBhJjNgrZ-03QRbirhkqU_t8HCz0"/>
+<div class="flex items-center gap-3 mb-8">
+<div class="w-10 h-10 rounded-full bg-secondary-container/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">health_metrics</span>
+</div>
+<div>
+<p class="font-headline-md text-primary leading-tight">CompliancePro</p>
+<p class="text-xs text-on-surface-variant uppercase tracking-wider">Clinical Admin</p>
+</div>
+</div>
+<nav class="space-y-1">
+<!-- Dashboard Active -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-primary font-bold border-r-4 border-primary bg-secondary-container/10 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-body-md">Staff List</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-body-md">Settings</span>
+</a>
+</nav>
+</div>
+<div class="mt-auto p-6 border-t border-border-light">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded-full object-cover border border-border-light" data-alt="A professional headshot of a medical administrator in a bright clinical setting. The subject is wearing a white lab coat with a subtle stethoscope around the neck, conveying authority and trust. The lighting is soft and high-key, with a clean, minimalist background reflecting a modern healthcare environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5v7avgn7aHy_6uIfW7Gvr-Sz9RcBfB4a_vJgmm9tpa2gnOozAJRoHRGAlQ9Utj0VdGCFfcRXLDGixMZmo02P6D1YP0uYGs9_HLvEjHJovnZpGVj3pXVkfCW7nsfz5b7G2y0AOfBrontiO8iSj-v6yZxqHJm6Fnc_ku4TO5pWjWV_eg3OZd_v5Eiu5p8MpplEUyG5cQh_I2PwEAAWy2nKLjveVKu1gKsxck3xNHU55B0xt7NtN690fBPzn493F4Uutk0Vdwr5AT2c"/>
+<div>
+<p class="text-sm font-bold text-on-surface">Dr. Sarah Jenkins</p>
+<p class="text-xs text-on-surface-variant">Senior Administrator</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 min-h-screen">
+<!-- TopAppBar (Predicted Component) -->
+<header class="flex justify-between items-center w-full px-8 py-3 h-16 bg-surface-container-lowest border-b border-border-light sticky top-0 z-40">
+<div class="flex items-center gap-6 flex-1">
+<h1 class="font-headline-md text-primary">Compliance Management</h1>
+<div class="relative w-96">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-full text-sm focus:ring-2 focus:ring-primary transition-all" placeholder="Search by staff name or certificate ID..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-full transition-all">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-full transition-all">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Dashboard Content -->
+<div class="p-8 space-y-8">
+<!-- Summary Stats -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-border-light shadow-sm">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined p-2 bg-primary/10 text-primary rounded-lg">groups</span>
+<span class="text-xs font-bold text-status-confirmed">+12% vs LY</span>
+</div>
+<p class="text-on-surface-variant text-sm font-medium">Total Staff</p>
+<h3 class="font-headline-lg text-primary">342</h3>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-border-light shadow-sm">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined p-2 bg-status-confirmed/10 text-status-confirmed rounded-lg">verified_user</span>
+<div class="w-16 h-1 bg-surface-container-high rounded-full overflow-hidden">
+<div class="w-[94%] h-full bg-status-confirmed"></div>
+</div>
+</div>
+<p class="text-on-surface-variant text-sm font-medium">Compliant Staff (%)</p>
+<h3 class="font-headline-lg text-on-surface">94.2%</h3>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-border-light shadow-sm">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined p-2 bg-status-pending/10 text-status-pending rounded-lg">history</span>
+</div>
+<p class="text-on-surface-variant text-sm font-medium">Expiring Soon</p>
+<h3 class="font-headline-lg text-on-surface">18</h3>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-border-light shadow-sm">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined p-2 bg-status-canceled/10 text-status-canceled rounded-lg">warning</span>
+</div>
+<p class="text-on-surface-variant text-sm font-medium">Non-Compliant</p>
+<h3 class="font-headline-lg text-status-canceled">5</h3>
+</div>
+</div>
+<!-- Main Grid: Table & Alerts -->
+<div class="grid grid-cols-12 gap-8">
+<!-- Compliance Table Section -->
+<div class="col-span-12 lg:col-span-9 space-y-6">
+<div class="flex flex-wrap items-center justify-between gap-4">
+<h2 class="font-headline-md text-on-surface">Staff Compliance Roster</h2>
+<!-- Filters -->
+<div class="flex items-center gap-3">
+<select class="bg-surface-container-lowest border-border-light rounded-lg text-sm focus:ring-primary focus:border-primary px-4 py-2">
+<option>All Regions</option>
+<option>Rhyl</option>
+<option>Criccieth</option>
+<option>Porthmadog</option>
+</select>
+<select class="bg-surface-container-lowest border-border-light rounded-lg text-sm focus:ring-primary focus:border-primary px-4 py-2">
+<option>All Roles</option>
+<option>Nurse</option>
+<option>HCA</option>
+<option>Senior Carer</option>
+</select>
+<button class="flex items-center gap-2 px-4 py-2 bg-primary text-on-primary rounded-lg font-bold text-sm hover:bg-primary-container transition-all">
+<span class="material-symbols-outlined text-sm">filter_list</span>
+                                Filter
+                            </button>
+</div>
+</div>
+<!-- Table Card -->
+<div class="bg-surface-container-lowest rounded-xl border border-border-light shadow-sm overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low text-on-surface-variant border-b border-border-light">
+<tr>
+<th class="px-6 py-4 font-label-sm uppercase tracking-wider">Staff Member</th>
+<th class="px-6 py-4 font-label-sm uppercase tracking-wider">Region / Role</th>
+<th class="px-6 py-4 font-label-sm uppercase tracking-wider text-center">DBS Status</th>
+<th class="px-6 py-4 font-label-sm uppercase tracking-wider">Mandatory Training</th>
+<th class="px-6 py-4 font-label-sm uppercase tracking-wider text-right">Eligibility</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-light">
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary-container/10 flex items-center justify-center font-bold text-primary">EJ</div>
+<div class="flex flex-col">
+<span class="font-bold text-on-surface">Emma Jones</span>
+<span class="text-xs text-on-surface-variant">ID: 992831</span>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="text-sm font-medium">Rhyl</span>
+<span class="text-xs text-on-surface-variant">Nurse</span>
+</div>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="material-symbols-outlined text-status-confirmed" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="text-sm font-bold">24 Oct 2024</span>
+<span class="text-[10px] text-on-surface-variant uppercase">Next Renewal</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<span class="px-3 py-1 bg-status-confirmed/10 text-status-confirmed text-xs font-bold rounded-full">Ready for Shift</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary-container/10 flex items-center justify-center font-bold text-primary">MP</div>
+<div class="flex flex-col">
+<span class="font-bold text-on-surface">Marc Price</span>
+<span class="text-xs text-on-surface-variant">ID: 991204</span>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="text-sm font-medium">Criccieth</span>
+<span class="text-xs text-on-surface-variant">Senior Carer</span>
+</div>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="material-symbols-outlined text-status-pending" style="font-variation-settings: 'FILL' 1;">warning</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="text-sm font-bold text-status-canceled">Expired</span>
+<span class="text-[10px] text-status-canceled uppercase">Action Required</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<span class="px-3 py-1 bg-status-canceled/10 text-status-canceled text-xs font-bold rounded-full">Action Required</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary-container/10 flex items-center justify-center font-bold text-primary">LW</div>
+<div class="flex flex-col">
+<span class="font-bold text-on-surface">Lowri Williams</span>
+<span class="text-xs text-on-surface-variant">ID: 994552</span>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="text-sm font-medium">Porthmadog</span>
+<span class="text-xs text-on-surface-variant">HCA</span>
+</div>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="material-symbols-outlined text-status-confirmed" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="text-sm font-bold">12 Sep 2024</span>
+<span class="text-[10px] text-on-surface-variant uppercase">Next Renewal</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<span class="px-3 py-1 bg-status-confirmed/10 text-status-confirmed text-xs font-bold rounded-full">Ready for Shift</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary-container/10 flex items-center justify-center font-bold text-primary">GE</div>
+<div class="flex flex-col">
+<span class="font-bold text-on-surface">Gareth Evans</span>
+<span class="text-xs text-on-surface-variant">ID: 990112</span>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="text-sm font-medium">Rhyl</span>
+<span class="text-xs text-on-surface-variant">Nurse</span>
+</div>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="material-symbols-outlined text-status-confirmed" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="text-sm font-bold text-status-pending">15 Days Left</span>
+<span class="text-[10px] text-on-surface-variant uppercase">Approaching Expiry</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<span class="px-3 py-1 bg-status-pending/10 text-status-pending text-xs font-bold rounded-full">Renewal Initiated</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-6 py-4 bg-surface-container-low flex items-center justify-between">
+<span class="text-xs text-on-surface-variant">Showing 1-10 of 342 staff members</span>
+<div class="flex gap-2">
+<button class="p-1 px-3 border border-border-light rounded hover:bg-white transition-all text-xs">Previous</button>
+<button class="p-1 px-3 border border-border-light rounded bg-primary text-on-primary text-xs">Next</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Urgent Renewals Sidebar -->
+<div class="col-span-12 lg:col-span-3 space-y-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-status-canceled">notifications_active</span>
+<h2 class="font-headline-md text-on-surface">Urgent Renewals</h2>
+</div>
+<div class="space-y-4">
+<!-- Alert Card 1 -->
+<div class="bg-surface-container-lowest p-4 rounded-xl border-l-4 border-status-canceled shadow-sm relative overflow-hidden group">
+<div class="absolute -right-2 -top-2 opacity-10">
+<span class="material-symbols-outlined text-6xl">priority_high</span>
+</div>
+<p class="text-xs font-bold text-status-canceled uppercase tracking-widest mb-2">High Priority</p>
+<h4 class="font-bold text-on-surface">DBS Renewal - Marc Price</h4>
+<p class="text-xs text-on-surface-variant mt-1 mb-4">Mandatory background check expired 2 days ago. Staff member restricted from clinical shifts.</p>
+<button class="w-full py-2 bg-status-canceled text-on-primary rounded-lg text-xs font-bold hover:bg-red-600 transition-all">
+                                Process Renewal
+                            </button>
+</div>
+<!-- Alert Card 2 -->
+<div class="bg-surface-container-lowest p-4 rounded-xl border-l-4 border-status-pending shadow-sm relative overflow-hidden group">
+<p class="text-xs font-bold text-status-pending uppercase tracking-widest mb-2">Expiring 15 Days</p>
+<h4 class="font-bold text-on-surface">Fire Safety - Gareth Evans</h4>
+<p class="text-xs text-on-surface-variant mt-1 mb-4">Training session available on 18th Oct at Rhyl Community Center.</p>
+<button class="w-full py-2 border border-status-pending text-status-pending rounded-lg text-xs font-bold hover:bg-status-pending/10 transition-all">
+                                Book Training
+                            </button>
+</div>
+<!-- Alert Card 3 -->
+<div class="bg-surface-container-lowest p-4 rounded-xl border-l-4 border-status-pending shadow-sm relative overflow-hidden group">
+<p class="text-xs font-bold text-status-pending uppercase tracking-widest mb-2">Expiring 22 Days</p>
+<h4 class="font-bold text-on-surface">Manual Handling - Siwan Rees</h4>
+<p class="text-xs text-on-surface-variant mt-1 mb-4">Final notice sent to staff member email. No response yet.</p>
+<button class="w-full py-2 border border-outline text-on-surface-variant rounded-lg text-xs font-bold hover:bg-surface-container-low transition-all">
+                                Send Reminder
+                            </button>
+</div>
+<!-- Quick Summary Chart Placeholder (Atmospheric Visual) -->
+<div class="bg-primary/5 p-6 rounded-xl border border-primary/20 mt-8">
+<h4 class="text-xs font-bold text-primary uppercase mb-4">Regional Compliance</h4>
+<div class="space-y-3">
+<div>
+<div class="flex justify-between text-xs mb-1">
+<span>Rhyl</span>
+<span class="font-bold">98%</span>
+</div>
+<div class="h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-status-confirmed" style="width: 98%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-xs mb-1">
+<span>Criccieth</span>
+<span class="font-bold">89%</span>
+</div>
+<div class="h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-status-pending" style="width: 89%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-xs mb-1">
+<span>Porthmadog</span>
+<span class="font-bold">92%</span>
+</div>
+<div class="h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 92%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer / Technical Support -->
+<footer class="p-8 border-t border-border-light mt-8 flex justify-between items-center text-on-surface-variant text-xs">
+<p>© 2024 Moncare Limited. System Version 4.2.1-clinical</p>
+<div class="flex gap-4">
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors" href="#">Compliance Standards</a>
+<a class="hover:text-primary transition-colors" href="#">Support Desk</a>
+</div>
+</footer>
+</main>
+<script>
+        // Simple search interactivity
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('ring-2', 'ring-primary');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('ring-2', 'ring-primary');
+        });
+
+        // Interactive hover effects on table rows
+        const rows = document.querySelectorAll('tbody tr');
+        rows.forEach(row => {
+            row.addEventListener('mouseenter', () => {
+                row.classList.add('bg-surface-container-low/50');
+            });
+            row.addEventListener('mouseleave', () => {
+                row.classList.remove('bg-surface-container-low/50');
+            });
+        });
+    </script>
+</body></html>

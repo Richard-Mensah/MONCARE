@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;family=Manrope:wght@600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-high": "#dce9ff",
+                    "secondary-container": "#a7dbff",
+                    "on-tertiary-fixed-variant": "#3f484c",
+                    "on-primary-fixed": "#001e2f",
+                    "on-secondary-fixed": "#001e2e",
+                    "on-surface": "#0d1c2e",
+                    "surface-variant": "#d5e3fc",
+                    "background": "#f8f9ff",
+                    "tertiary": "#545d62",
+                    "on-primary-fixed-variant": "#004c6e",
+                    "surface-container-low": "#eff4ff",
+                    "surface-tint": "#006590",
+                    "secondary": "#2d6483",
+                    "on-tertiary-fixed": "#141d20",
+                    "on-primary-container": "#fcfcff",
+                    "secondary-fixed": "#c7e7ff",
+                    "on-tertiary-container": "#fafdff",
+                    "error": "#ba1a1a",
+                    "surface-dim": "#ccdbf3",
+                    "inverse-on-surface": "#eaf1ff",
+                    "on-secondary": "#ffffff",
+                    "outline-variant": "#bec8d1",
+                    "on-primary": "#ffffff",
+                    "surface-bright": "#f8f9ff",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-container": "#6d767a",
+                    "tertiary-fixed-dim": "#bfc8cd",
+                    "outline": "#6f7881",
+                    "on-surface-variant": "#3f484f",
+                    "error-container": "#ffdad6",
+                    "tertiary-fixed": "#dbe4e9",
+                    "inverse-primary": "#88ceff",
+                    "surface-container-highest": "#d5e3fc",
+                    "surface": "#f8f9ff",
+                    "on-error": "#ffffff",
+                    "on-secondary-container": "#2a6180",
+                    "primary-container": "#007cb1",
+                    "on-error-container": "#93000a",
+                    "primary-fixed": "#c8e6ff",
+                    "secondary-fixed-dim": "#99cdf0",
+                    "primary": "#00628d",
+                    "inverse-surface": "#233144",
+                    "surface-container": "#e6eeff",
+                    "primary-fixed-dim": "#88ceff",
+                    "on-tertiary": "#ffffff",
+                    "on-background": "#0d1c2e",
+                    "on-secondary-fixed-variant": "#0c4c6a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "stack-sm": "0.5rem",
+                    "gutter": "1rem",
+                    "touch-target-min": "44px",
+                    "stack-md": "1rem",
+                    "stack-lg": "1.5rem",
+                    "margin-mobile": "1.25rem"
+            },
+            "fontFamily": {
+                    "body-sm": ["Inter"],
+                    "display-sm": ["Manrope"],
+                    "label-caps": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-md": ["Manrope"],
+                    "label-numeric": ["JetBrains Mono"]
+            },
+            "fontSize": {
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "display-sm": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-caps": ["11px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "label-numeric": ["13px", {"lineHeight": "16px", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { -webkit-tap-highlight-color: transparent; }
+        .bento-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-lg min-h-screen pb-24">
+<!-- Top App Bar -->
+<header class="w-full top-0 sticky bg-surface dark:bg-surface-dim border-b border-outline-variant dark:border-outline z-50">
+<div class="flex items-center justify-between px-margin-mobile h-[64px]">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-fixed overflow-hidden border border-outline-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="account_circle">account_circle</span>
+</div>
+<h1 class="font-display-sm text-display-sm text-primary dark:text-primary-fixed-dim">CareSuite</h1>
+</div>
+<div class="flex items-center gap-2">
+<button class="w-11 h-11 flex items-center justify-center rounded-full hover:bg-surface-container-low transition-colors active:opacity-80">
+<span class="material-symbols-outlined text-primary" data-icon="search">search</span>
+</button>
+</div>
+</div>
+</header>
+<main class="px-margin-mobile pt-6 space-y-6">
+<!-- Dashboard Summary / Bento Header -->
+<section class="space-y-4">
+<h2 class="font-headline-md text-headline-md text-on-surface">Alert Center</h2>
+<div class="grid grid-cols-2 gap-3">
+<div class="bg-surface-container-lowest p-4 rounded-xl border border-outline-variant flex flex-col justify-between h-32">
+<span class="material-symbols-outlined text-error" data-icon="emergency">emergency</span>
+<div>
+<div class="font-label-numeric text-label-numeric text-on-surface-variant">ACTIVE ALERTS</div>
+<div class="font-display-sm text-display-sm text-error">03</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-xl border border-outline-variant flex flex-col justify-between h-32">
+<span class="material-symbols-outlined text-primary" data-icon="visibility">visibility</span>
+<div>
+<div class="font-label-numeric text-label-numeric text-on-surface-variant">UNREAD UPDATES</div>
+<div class="font-display-sm text-display-sm text-primary">12</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Chronological Feed -->
+<section class="space-y-4">
+<div class="flex items-center justify-between">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Recent Activity</h3>
+<button class="text-primary font-label-caps text-label-caps">MARK ALL AS READ</button>
+</div>
+<!-- Urgent Alert -->
+<div class="group relative bg-surface-container-lowest border border-outline-variant border-l-4 border-l-error rounded-lg p-4 shadow-sm active:scale-[0.98] transition-transform">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-error text-[18px]" data-icon="cancel" style="font-variation-settings: 'FILL' 1;">cancel</span>
+<span class="font-label-caps text-label-caps text-error">URGENT</span>
+</div>
+<span class="font-label-numeric text-label-numeric text-on-surface-variant">09:41 AM</span>
+</div>
+<h4 class="font-headline-md text-[16px] text-on-surface leading-snug mb-1">Shift #123 Canceled by Medygg</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Emergency replacement required for ICU Ward B. Immediate staffing needed.</p>
+<div class="mt-4 flex gap-2">
+<button class="bg-primary text-on-primary px-4 py-2 rounded-lg font-label-caps text-label-caps">FIND COVER</button>
+<button class="bg-surface-container-high text-on-surface-variant px-4 py-2 rounded-lg font-label-caps text-label-caps">DISMISS</button>
+</div>
+</div>
+<!-- Standard Alert -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-4 shadow-sm active:scale-[0.98] transition-transform">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[18px]" data-icon="check_circle">check_circle</span>
+<span class="font-label-caps text-label-caps text-secondary">SYSTEM</span>
+</div>
+<span class="font-label-numeric text-label-numeric text-on-surface-variant">08:15 AM</span>
+</div>
+<h4 class="font-headline-md text-[16px] text-on-surface leading-snug mb-1">Staff Acknowledged Alert</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Nurse Sarah Jenkins has confirmed receipt of the updated protocol for Ward 4.</p>
+</div>
+<!-- Informational Alert -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-4 shadow-sm active:scale-[0.98] transition-transform">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]" data-icon="add_circle">add_circle</span>
+<span class="font-label-caps text-label-caps text-primary">NEW REQUEST</span>
+</div>
+<span class="font-label-numeric text-label-numeric text-on-surface-variant">07:50 AM</span>
+</div>
+<h4 class="font-headline-md text-[16px] text-on-surface leading-snug mb-1">New Shift Request from Porthmadog</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Residential care unit requires 2 additional assistants for the upcoming night shift.</p>
+<div class="mt-4">
+<div class="flex items-center gap-3 p-2 bg-surface-container-low rounded-lg border border-outline-variant/30">
+<div class="w-8 h-8 bg-surface-container-highest rounded-md flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="location_on">location_on</span>
+</div>
+<div>
+<div class="text-[12px] font-bold text-on-surface">Porthmadog Health</div>
+<div class="text-[10px] text-on-surface-variant">2.4 miles from hub</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Priority Alert -->
+<div class="group relative bg-surface-container-lowest border border-outline-variant border-l-4 border-l-error rounded-lg p-4 shadow-sm active:scale-[0.98] transition-transform">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-error text-[18px]" data-icon="warning" style="font-variation-settings: 'FILL' 1;">warning</span>
+<span class="font-label-caps text-label-caps text-error">HIGH PRIORITY</span>
+</div>
+<span class="font-label-numeric text-label-numeric text-on-surface-variant">Yesterday</span>
+</div>
+<h4 class="font-headline-md text-[16px] text-on-surface leading-snug mb-1">Critical Low Staffing Alert</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Ward C occupancy has exceeded safety thresholds. Redistribution of floating staff recommended.</p>
+</div>
+</section>
+<!-- Aesthetic Divider with Texture -->
+<div class="relative py-4 overflow-hidden">
+<div class="absolute inset-0 opacity-10 bg-[radial-gradient(#00628d_1px,transparent_1px)] [background-size:16px_16px]"></div>
+<div class="h-px w-full bg-outline-variant"></div>
+</div>
+<!-- Archived Section Toggle -->
+<button class="w-full flex items-center justify-between p-4 bg-surface-container-low rounded-xl border border-dashed border-outline hover:bg-surface-container-high transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="archive">archive</span>
+<span class="font-body-lg text-body-lg text-on-surface-variant">View Archived Notifications</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="chevron_right">chevron_right</span>
+</button>
+</main>
+<!-- Navigation Shell -->
+<nav class="fixed bottom-0 w-full z-50 bg-surface dark:bg-surface-dim border-t border-outline-variant dark:border-outline shadow-sm">
+<div class="flex justify-around items-center h-[80px] pb-safe">
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:bg-surface-container-high transition-transform active:scale-95 duration-100">
+<span class="material-symbols-outlined mb-1" data-icon="dashboard">dashboard</span>
+<span class="font-label-caps text-label-caps">Dashboard</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:bg-surface-container-high transition-transform active:scale-95 duration-100">
+<span class="material-symbols-outlined mb-1" data-icon="calendar_today">calendar_today</span>
+<span class="font-label-caps text-label-caps">Shifts</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:bg-surface-container-high transition-transform active:scale-95 duration-100">
+<span class="material-symbols-outlined mb-1" data-icon="groups">groups</span>
+<span class="font-label-caps text-label-caps">Staff</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-full px-4 py-1 transition-transform active:scale-95 duration-100">
+<span class="material-symbols-outlined mb-1" data-icon="notifications" style="font-variation-settings: 'FILL' 1;">notifications</span>
+<span class="font-label-caps text-label-caps">Alerts</span>
+</div>
+</div>
+</nav>
+<!-- Contextual Floating Action Button -->
+<!-- Suppressed based on screen type (Alerts Center is specialized) but included only if "Add Alert" was logic. Suppressing for primary feed focus as per instruction "Details/Transactional". However, Alert Center is a top-level hub. Let's provide a filter/search FAB for UX. -->
+<button class="fixed bottom-24 right-6 w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg flex items-center justify-center active:scale-90 transition-transform z-40">
+<span class="material-symbols-outlined" data-icon="filter_list">filter_list</span>
+</button>
+<script>
+        // Micro-interaction for alerts
+        document.querySelectorAll('section > div[class*="bg-surface-container-lowest"]').forEach(card => {
+            card.addEventListener('click', function() {
+                this.classList.add('opacity-70');
+                setTimeout(() => {
+                    this.classList.remove('opacity-70');
+                }, 200);
+            });
+        });
+
+        // Pull to refresh simulation logic could go here
+    </script>
+</body></html>
