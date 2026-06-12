@@ -9,6 +9,16 @@ const PUBLIC_PATHS = ["/login", "/verify", "/auth"]
  * unauthenticated users to /login.
  */
 export async function updateSession(request: NextRequest) {
+  // Magic-link safety net: if an auth `code` lands anywhere other than the
+  // exchange handler (e.g. Supabase redirected to "/" or "/login"), forward it
+  // to /auth/confirm so the session can be established.
+  const code = request.nextUrl.searchParams.get("code")
+  if (code && request.nextUrl.pathname !== "/auth/confirm") {
+    const url = request.nextUrl.clone()
+    url.pathname = "/auth/confirm"
+    return NextResponse.redirect(url)
+  }
+
   let response = NextResponse.next({ request })
 
   const supabase = createServerClient(
