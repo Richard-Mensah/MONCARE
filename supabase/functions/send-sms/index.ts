@@ -1,3 +1,5 @@
+// @ts-nocheck — Deno edge function; uses jsr: imports the Next.js TypeScript
+// build cannot resolve. This file runs in Supabase's Deno runtime, not Next.
 // MONCARE — send-sms edge function
 // Triggered by a database webhook whenever an SMS-channel notification row is
 // inserted. Looks up the recipient's phone and sends the text via Twilio.
