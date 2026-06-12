@@ -48,9 +48,9 @@ export const NOTIF_ACCENT: Record<string, string> = {
 
 // Tailwind badge classes per shift status (Clinical Precision status tints).
 export const SHIFT_STATUS_STYLES: Record<ShiftStatus, string> = {
-  open: "bg-amber-50 text-amber-700 ring-1 ring-amber-200/60",
+  open: "bg-warning/10 text-[#b45309] ring-1 ring-warning/25",
   assigned: "bg-brand-50 text-brand-700 ring-1 ring-brand-200/60",
-  confirmed: "bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200/60",
+  confirmed: "bg-success/10 text-[#0c8f70] ring-1 ring-success/25",
   completed: "bg-slate-100 text-slate-600 ring-1 ring-slate-200",
-  cancelled: "bg-red-50 text-red-600 ring-1 ring-red-200/60",
+  cancelled: "bg-danger/10 text-[#c0341d] ring-1 ring-danger/25",
 }

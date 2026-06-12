@@ -2,28 +2,29 @@
 @import "tailwindcss";
 
 @theme {
-  /* MONCARE brand — Clinical Precision primary (#1190CB) */
-  --color-brand-50: #eaf6fd;
-  --color-brand-100: #cfeafa;
-  --color-brand-200: #9fd5f4;
-  --color-brand-300: #63bdeb;
-  --color-brand-400: #2ea6df;
-  --color-brand-500: #1190cb;
-  --color-brand-600: #0a78ad;
-  --color-brand-700: #00628d;
-  --color-brand-800: #064f70;
-  --color-brand-900: #0a425d;
+  /* MONCARE brand — exact Stitch "Clinical Precision" blues
+     (primary #00628d, primary-container #007cb1, primary-fixed #c8e6ff) */
+  --color-brand-50: #e6f2fa;
+  --color-brand-100: #c8e6ff;
+  --color-brand-200: #9bd2f1;
+  --color-brand-300: #5cb8e2;
+  --color-brand-400: #1d9ad0;
+  --color-brand-500: #007cb1;
+  --color-brand-600: #00628d;
+  --color-brand-700: #00557a;
+  --color-brand-800: #004c6e;
+  --color-brand-900: #00344d;
 
-  /* Semantic status colors */
+  /* Exact Stitch status colors */
   --color-success: #1cbf99;
   --color-warning: #f59e0b;
   --color-danger: #ef4444;
 
-  /* Neutrals from the design system */
-  --color-ink: #222222;
-  --color-muted: #64748b;
-  --color-line: #e2e8f0;
-  --color-surface: #f8fafc;
+  /* Exact Stitch neutrals */
+  --color-ink: #191c1e; /* on-surface */
+  --color-muted: #64748b; /* text-secondary */
+  --color-line: #e2e8f0; /* border-light */
+  --color-surface: #f7f9fb; /* surface / background */
 }
 
 @theme inline {
@@ -32,8 +33,8 @@
 }
 
 :root {
-  --background: #f8fafc;
-  --foreground: #222222;
+  --background: #f7f9fb;
+  --foreground: #191c1e;
 }
 
 body {

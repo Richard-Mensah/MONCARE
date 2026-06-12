@@ -42,7 +42,7 @@ export default function AppHeader({ profile }: Props) {
           <NotificationBell userId={profile.id} />
 
           <div className="flex items-center gap-2.5 rounded-lg py-1 pl-1 pr-1.5">
-            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-500 text-xs font-bold text-white">
+            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-600 text-xs font-bold text-white">
               {initials(profile.full_name)}
             </div>
             <div className="hidden text-left leading-tight sm:block">

@@ -8,7 +8,7 @@ type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
 }
 
 const VARIANTS: Record<NonNullable<Props["variant"]>, string> = {
-  primary: "bg-brand-500 text-white hover:bg-brand-700 focus-visible:ring-brand-500",
+  primary: "bg-brand-600 text-white hover:bg-brand-500 focus-visible:ring-brand-600",
   secondary:
     "bg-white text-brand-700 border border-brand-300 hover:bg-brand-50 focus-visible:ring-brand-500",
   danger: "bg-danger text-white hover:bg-red-600 focus-visible:ring-red-500",

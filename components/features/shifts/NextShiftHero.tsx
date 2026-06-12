@@ -30,7 +30,7 @@ export default function NextShiftHero({ shift }: { shift: ShiftWithRelations }) 
 
       <div className="mt-4">
         {confirmed ? (
-          <span className="inline-flex items-center gap-1.5 rounded-lg bg-emerald-50 px-3 py-2 text-sm font-semibold text-emerald-700 ring-1 ring-emerald-200/60">
+          <span className="inline-flex items-center gap-1.5 rounded-lg bg-success/10 px-3 py-2 text-sm font-semibold text-[#0c8f70] ring-1 ring-success/25">
             <CheckCircle2 className="h-4 w-4" /> Confirmed — OK to travel
           </span>
         ) : (

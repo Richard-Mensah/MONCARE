@@ -47,7 +47,7 @@ export default function SideNav({ role }: Props) {
       {role === "coordinator" && (
         <Link
           href="/shifts"
-          className="mt-3 flex h-11 items-center justify-center gap-2 rounded-lg bg-brand-700 text-sm font-semibold text-white transition-colors hover:bg-brand-800"
+          className="mt-3 flex h-11 items-center justify-center gap-2 rounded-lg bg-brand-600 text-sm font-semibold text-white transition-colors hover:bg-brand-500"
         >
           <Plus className="h-4 w-4" /> New Shift
         </Link>
