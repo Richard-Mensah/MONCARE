@@ -42,6 +42,17 @@ export type StaffDetails = {
   created_at: string
 }
 
+export type Availability = {
+  id: string
+  worker_id: string
+  weekday: number | null
+  specific_date: string | null
+  start_time: string
+  end_time: string
+  is_available: boolean
+  created_at: string
+}
+
 export type Shift = {
   id: string
   care_home_id: string
@@ -87,6 +98,18 @@ export type Notification = {
   shift_id: string | null
   read_at: string | null
   sms_status: "pending" | "sent" | "failed" | null
+  created_at: string
+}
+
+export type Timesheet = {
+  id: string
+  shift_id: string
+  worker_id: string
+  clock_in: string | null
+  clock_out: string | null
+  hours: number | null
+  status: TimesheetStatus
+  approved_by: string | null
   created_at: string
 }
 

@@ -6,6 +6,17 @@ export const APP_TAGLINE = "Healthcare agency"
 // Roles a worker can be qualified for / a shift can require.
 export const CARE_ROLES = ["carer", "senior", "nurse", "support"] as const
 
+// 0 = Sunday … 6 = Saturday (matches Postgres EXTRACT(DOW)).
+export const WEEKDAYS = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+] as const
+
 export const ROLE_LABELS: Record<Role, string> = {
   coordinator: "MONCARE Coordinator",
   worker: "Care Worker",

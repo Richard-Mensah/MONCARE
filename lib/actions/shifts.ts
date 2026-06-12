@@ -55,6 +55,30 @@ export async function assignWorker(
   }
 
   const supabase = await createClient()
+
+  // Double-booking guard: reject if the worker already has a non-cancelled
+  // assignment on the same date whose time overlaps this shift.
+  const { data: target } = await supabase
+    .from("shifts")
+    .select("shift_date, start_time, end_time")
+    .eq("id", shiftId)
+    .single()
+
+  if (target) {
+    const { data: clash } = await supabase
+      .from("shift_assignments")
+      .select("id, shift:shifts!inner(shift_date, start_time, end_time)")
+      .eq("worker_id", workerId)
+      .neq("status", "cancelled")
+      .eq("shift.shift_date", target.shift_date)
+      .lt("shift.start_time", target.end_time)
+      .gt("shift.end_time", target.start_time)
+      .limit(1)
+    if (clash && clash.length > 0) {
+      return { ok: false, error: "Worker already has an overlapping shift that day" }
+    }
+  }
+
   const { error } = await supabase.from("shift_assignments").insert({
     shift_id: shiftId,
     worker_id: workerId,

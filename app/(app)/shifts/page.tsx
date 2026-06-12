@@ -1,10 +1,12 @@
 import { requireRole } from "@/lib/auth"
 import { listShifts } from "@/lib/data/shifts"
 import { listCareHomes, listAssignableWorkers } from "@/lib/data/directory"
+import { getPendingClaimsByShift } from "@/lib/data/claims"
 import PageHeader from "@/components/layout/PageHeader"
 import ShiftCard from "@/components/features/shifts/ShiftCard"
 import NewShiftForm from "@/components/features/shifts/NewShiftForm"
 import AssignWorkerControl from "@/components/features/shifts/AssignWorkerControl"
+import ClaimsReview from "@/components/features/shifts/ClaimsReview"
 import CancelShiftButton from "@/components/features/shifts/CancelShiftButton"
 import EmptyState from "@/components/ui/EmptyState"
 import { CalendarDays } from "lucide-react"
@@ -13,10 +15,11 @@ export const metadata = { title: "Shifts — MONCARE" }
 
 export default async function ShiftsPage() {
   await requireRole(["coordinator"])
-  const [shifts, careHomes, workers] = await Promise.all([
+  const [shifts, careHomes, workers, claimsByShift] = await Promise.all([
     listShifts(),
     listCareHomes(),
     listAssignableWorkers(),
+    getPendingClaimsByShift(),
   ])
 
   return (
@@ -44,7 +47,10 @@ export default async function ShiftsPage() {
           {shifts.map((shift) => (
             <ShiftCard key={shift.id} shift={shift}>
               {shift.status === "open" && (
-                <AssignWorkerControl shiftId={shift.id} workers={workers} />
+                <>
+                  <ClaimsReview claims={claimsByShift[shift.id] ?? []} />
+                  <AssignWorkerControl shiftId={shift.id} workers={workers} />
+                </>
               )}
               {(shift.status === "assigned" || shift.status === "confirmed") && (
                 <CancelShiftButton shiftId={shift.id} />
